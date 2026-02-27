@@ -1,4 +1,4 @@
-﻿/*
+/*
 * ----------------------------------------------------------------------------------------
 Author       : Hridoy
 Template Name: Kane - Personal Portfolio HTML Template
@@ -366,7 +366,7 @@ input[type=radio] {
 }
 
 html {
-    scroll-behavior: unset !important;
+    scroll-behavior: smooth;
 }
 
 
@@ -1296,6 +1296,34 @@ html {
 
 .about-content-part {}
 
+.about-bio {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.skills-tags span {
+    padding: 6px 14px;
+    background: var(--grey-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--heading-color);
+    transition: all 0.3s ease;
+}
+
+.skills-tags span:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
 .about-image-part {
     text-align: center;
     padding: 40px;
@@ -1403,50 +1431,61 @@ html {
 * ----------------------------------------------------------------------------------------
 */
 .services-area {
-    padding-top: 20px;
-    padding-bottom: 100px;
+    padding-top: 60px;
+    padding-bottom: 120px;
+}
 
+.services-grid {
+    row-gap: 0;
 }
 
 .service-item {
     background: var(--grey-bg);
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    padding: 60px 40px;
-    border-radius: 10px;
+    transition: all 0.3s ease;
+    padding: 48px 40px 52px;
+    border-radius: 16px;
     border: 1px solid var(--border-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
+.service-icon {
+    margin-bottom: 24px;
+}
+
+.service-icon i {
+    font-size: 48px;
+    color: var(--heading-color);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
 
 .service-item p {
     margin-bottom: 0;
     color: rgb(119, 119, 125);
+    font-size: 15px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
 }
 
 .service-item h4 {
     color: var(--subtitle-color);
     font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.service-item i {
-    font-size: 60px;
-    color: #999;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.35;
 }
 
 .service-item:hover {
     border-color: var(--primary-color);
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
-.service-item:hover.service-item i {
+.service-item:hover .service-icon i {
     color: var(--primary-color);
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    opacity: 1;
 }
 
 .service-item:hover .details-btn {
@@ -1700,9 +1739,50 @@ ul.extra-skills li i {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
 }
 
-.project-item.style-two:hover .project-image .details-btn {
+.project-item.style-two:hover .project-image .details-btn,
+.project-item.style-two:hover .project-image .project-overlay {
     opacity: 1;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+/* Portfolio overlay with GitHub & Live buttons */
+.project-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.project-btn {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.project-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.project-item.style-two .project-image {
+    overflow: hidden;
 }
 
 
@@ -2172,6 +2252,17 @@ ul.extra-skills li i {
     color: var(--subtitle-color);
 }
 
+.single-contact p a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 22px;
+    color: var(--main-color);
+}
+
+.single-contact p a:hover {
+    color: var(--primary-color);
+}
+
 .contact-content-part {
     background: var(--grey-bg);
     padding: 50px 30px 20px 40px;
@@ -2241,6 +2332,31 @@ ul.extra-skills li i {
 
 .input-error {
     border: 1px solid #ff0000;
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    display: none;
+}
+
+.form-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.pricing-item.featured {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 /*
 * ----------------------------------------------------------------------------------------
