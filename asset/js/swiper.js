@@ -48,9 +48,10 @@ if (document.querySelector(".slider-playground")) {
 if (document.querySelector(".slider-tech-stack")) {
     const swiper = new Swiper(".slider-tech-stack", {
         slidesPerView: 1,
-        spaceBetween: 10,
+        slidesPerGroup: 1,
+        spaceBetween: 16,
         loop: true,
-        speed: 1000,
+        speed: 600,
         autoplay: {
             delay: 1000,
             disableOnInteraction: false,
@@ -61,12 +62,12 @@ if (document.querySelector(".slider-tech-stack")) {
         },
         breakpoints: {
             768: {
-                slidesPerView: 1.5,
-                spaceBetween: 0,
+                slidesPerView: 2,
+                slidesPerGroup: 1,
             },
-            991: {
-                slidesPerView: 1.775,
-                spaceBetween: 0,
+            1200: {
+                slidesPerView: 3,
+                slidesPerGroup: 1,
             },
         },
     });

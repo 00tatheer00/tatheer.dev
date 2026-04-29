@@ -3035,6 +3035,52 @@ header .mobile-menu {
   flex-direction: column;
   gap: 30px;
 }
+.works-wrap .projects-cta-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 48px 42px;
+  background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(12, 12, 12, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 30px rgba(251, 132, 16, 0.08), 0 20px 40px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.works-wrap .projects-cta-card::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -80px;
+  right: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 132, 16, 0.45) 0%, rgba(251, 132, 16, 0) 70%);
+}
+.works-wrap .projects-cta-card .badge {
+  display: inline-flex;
+  margin-bottom: 18px;
+}
+.works-wrap .projects-cta-card .title {
+  margin-bottom: 16px;
+}
+.works-wrap .projects-cta-card .desc {
+  max-width: 720px;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.74);
+}
+.works-wrap .projects-cta-card .cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+.works-wrap .projects-cta-card .cta-link:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
 .works-wrap .works-item {
   position: relative;
 }
@@ -3390,7 +3436,27 @@ header .mobile-menu {
   margin-bottom: 16px;
 }
 .section-tech-stack .tech-stack-item .image {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 25px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   margin-bottom: 25px;
+}
+.section-tech-stack .tech-stack-item .image img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+.section-tech-stack .tech-stack-item .image img[src$="nextjs.svg"],
+.section-tech-stack .tech-stack-item .image img[src$="express.svg"] {
+  filter: invert(1) brightness(1.15) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
 }
 .section-tech-stack.v2 {
   margin-top: 0;
