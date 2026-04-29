@@ -1,0 +1,159 @@
+form {
+    position: relative;
+    z-index: 30;
+
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        outline: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        width: 100%;
+        padding: 7px 0px 4px;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0px;
+        color: #fff;
+        @include tf-transition-3;
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        &:focus {
+            border-color: #fff;
+        }
+    }
+
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"] {
+        background-color: transparent;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .error {
+        margin-top: 5px;
+    }
+    .msg-success {
+        color: #1EF482;
+    }
+    .msg-error {
+        color: #F3500F;
+    }
+    .flat-alert {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.form-contact {
+    display: flex;
+    flex-direction: column;
+    fieldset {
+        label {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            margin-bottom: 5px;
+            letter-spacing: 0;
+        }
+    }
+    .fiel-mail {
+        margin-bottom: 37px;
+    }
+    .fiel-phone {
+        margin-bottom: 40px;
+    }
+    .fiel-text {
+        margin-bottom: 31px;
+        textarea {
+            height: 105px;
+        }
+    }
+    .pricing-list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        max-width: 575px;
+        margin-bottom: 65px;
+        .item {
+            padding: 9px 23.5px;
+            color: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 99px;
+            @include transition3();
+            cursor: pointer;
+            &:hover,
+            &.active {
+                color: var(--primary);
+            }
+        }
+    }
+    .bot-btn button {
+        padding: 4px 4px 4px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background-color: #fff;
+        border-radius: 99px;
+        color: rgb(21, 21, 21);
+        width: 284px;
+        span {
+            @include transition3();
+        }
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            font-size: 18px;
+            color: #fff;
+            background: rgb(21, 21, 21);
+            border-radius: 50%;
+            @include transition3();
+        }
+        &:hover {
+            color: var(--primary);
+            .icon {
+                color: var(--primary);
+            }
+        }
+    }
+    .flat-alert {
+        order: 5;
+        margin-top: 10px;
+    }
+}
+
+.form-search {
+    fieldset input {
+        padding-right: 30px;
+    }
+    button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%) rotateY(180deg);
+    }
+}

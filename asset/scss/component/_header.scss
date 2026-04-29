@@ -1,0 +1,89 @@
+header {
+    .inner-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .navigation {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        > li > a {
+            display: flex;
+            padding: 20px 0;
+        }
+        .submenu {
+            min-width: 200px;
+            background-color: #fff;
+            top: 100%;
+            position: absolute;
+            margin-top: 15px;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 0 26px rgba(0, 0, 0, 0.06);
+            padding: 18px 24px;
+            z-index: 3;
+            pointer-events: none;
+            display: flex;
+            row-gap: 13px;
+            flex-direction: column;
+            border-radius: 12px;
+            @include transition3();
+            > li {
+                > a {
+                    font-size: 18px;
+                    line-height: 28px;
+                    color: #000;
+                }
+                &:hover,
+                &.current-menu-item {
+                    > a {
+                        color: var(--primary);
+                    }
+                }
+            }
+        }
+        .has-child:hover {
+            .submenu {
+                pointer-events: all;
+                margin-top: 0px;
+                pointer-events: auto;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    .mobile-menu {
+        display: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+.canvas-mb {
+    background: rgba(33, 33, 33, 1);
+    .offcanvas-header {
+        padding: 24px;
+    }
+    .close-menu {
+        display: flex;
+        color: #fff;
+    }
+    .mb-body {
+        padding: 20px 24px 0 24px;
+        .mb-content-top {
+            margin-bottom: 40px;
+        }
+    }
+    .nav-ul-mb {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .sub-nav-menu {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+}

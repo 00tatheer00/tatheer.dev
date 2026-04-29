@@ -1,0 +1,83 @@
+.tf-footer {
+    position: relative;
+    overflow: hidden;
+    &.style-1 {
+        padding: 171px 0 214px;
+    }
+    &.style-2 {
+        padding: 76px 0 88px;
+        .subtitle  {
+            margin-bottom: 56px;
+        }
+        .cta {
+            margin-bottom: 65px;
+        }
+        .social-links {
+            margin-bottom: 25px;
+        }
+    }
+    .avatar {
+        margin-bottom: 56px;
+        .image {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+        }
+        .name {
+            line-height: 24px;
+            margin-bottom: 4px;
+        }
+        .meta {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+    .coppyright {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: rgba(187, 187, 187, 1);
+        .icon {
+            font-size: 16px;
+        }
+    }
+    .map {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -10;
+        img {
+            width: 100%;
+        }
+    }
+    .box-gradient2 {
+        position: absolute;
+        bottom: -896px;
+        left: 23.83%;
+        transform: rotate(-109.95deg);
+        z-index: -10;
+    }
+}
+
+.bot-page {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -10;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+    .box-gradient2 {
+        position: absolute;
+        bottom: -876px;
+        left: 20.83%;
+        transform: rotate(-109.95deg);
+            z-index: -10;
+    }
+}

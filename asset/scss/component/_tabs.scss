@@ -1,0 +1,29 @@
+.menu-tab {
+    .item {
+        cursor: pointer;
+    }
+    &.style-1 {
+        display: flex;
+        padding: 9px;
+        border-radius: 99px;
+        background: rgba(20, 20, 20, 1);
+        @include transition3();
+        .item {
+            padding: 11px 19px;
+            border-radius: 99px;
+            @include transition3();
+            border: 1px solid transparent;
+            &.active {
+                background: rgba(40, 40, 40, 1);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+        }
+    }
+    &.style-2 {
+        .item {
+            &.active {
+                color: var(--primary) !important;
+            }
+        }
+    }
+}
