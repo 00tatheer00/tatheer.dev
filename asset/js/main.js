@@ -148,47 +148,101 @@
         });
     };
 
-    // contact form
+    // contact form (EmailJS)
     var ajaxContactForm = function () {
+        var emailJsConfig = {
+            serviceId: "service_2ut8onr",
+            templateId: "template_afk86eu",
+            publicKey: "K1r6e3NtrfnwC6SRp",
+        };
+        if (window.emailjs && typeof window.emailjs.init === "function") {
+            window.emailjs.init({
+                publicKey: emailJsConfig.publicKey,
+            });
+        }
+
+        var showToast = function (message, type) {
+            var $wrap = $("#premium-toast-wrap");
+            if (!$wrap.length) {
+                $wrap = $('<div id="premium-toast-wrap" class="premium-toast-wrap"></div>');
+                $("body").append($wrap);
+            }
+            var tone = type === "msg-success" ? "success" : "error";
+            var $toast = $(
+                '<div class="premium-toast ' +
+                    tone +
+                    '">' +
+                    '<div class="premium-toast-content">' +
+                    '<span class="premium-toast-icon">' +
+                    (tone === "success" ? "✓" : "!") +
+                    "</span>" +
+                    '<span class="premium-toast-text"></span>' +
+                    "</div>" +
+                    '<button type="button" class="premium-toast-close" aria-label="Close">×</button>' +
+                    "</div>"
+            );
+            $toast.find(".premium-toast-text").text(message);
+            $wrap.append($toast);
+            window.requestAnimationFrame(function () {
+                $toast.addClass("show");
+            });
+            var removeToast = function () {
+                $toast.removeClass("show");
+                setTimeout(function () {
+                    $toast.remove();
+                }, 260);
+            };
+            $toast.find(".premium-toast-close").on("click", removeToast);
+            setTimeout(removeToast, 5200);
+        };
+
         $('#form-contact').each(function () {
             $(this).validate({
                 submitHandler: function (form) {
                     var $form = $(form),
-                        str = $form.serialize(),
                         loading = $('<div />', { 'class': 'loading' });
+                    var payload = {
+                        // Keep multiple aliases so different template variable names work.
+                        to_email: "tatheerabidi00@gmail.com",
+                        to_name: "S Tatheer Hussain",
+                        from_email: form.mail.value,
+                        mail: form.mail.value,
+                        email: form.mail.value,
+                        reply_to: form.mail.value,
+                        phone: form.phone.value,
+                        whatsapp: form.phone.value,
+                        message: form.message.value,
+                        project_details: form.message.value,
+                        submitted_at: new Date().toLocaleString(),
+                    };
+                    var showAlert = function (message, cls) {
+                        $form.find(".flat-alert").remove();
+                        showToast(message, cls);
+                    };
 
-                    $.ajax({
-                        type: "POST",
-                        url: $form.attr('action'),
-                        data: str,
-                        beforeSend: function () {
-                            $form.find('.send-wrap').append(loading);
-                        },
-                        success: function (msg) {
-                            var result, cls;
-                            if (msg === 'Success') {
-                                result = 'Message Sent Successfully To Email Administrator';
-                                cls = 'msg-success';
-                            } else {
-                                result = 'Error sending email.';
-                                cls = 'msg-error';
+                    $form.find(".send-wrap").append(loading);
+                    if (!(window.emailjs && typeof window.emailjs.send === "function")) {
+                        showAlert("Email service failed to load. Please refresh and try again.", "msg-error");
+                        $form.find(".loading").remove();
+                        return;
+                    }
+
+                    window.emailjs
+                        .send(emailJsConfig.serviceId, emailJsConfig.templateId, payload)
+                        .then(function () {
+                            showAlert("Message sent successfully. I will get back to you soon.", "msg-success");
+                            $form.find(":input").not(".submit, button").val("");
+                        })
+                        .catch(function (error) {
+                            var reason = "Error sending email. Please check EmailJS template variables.";
+                            if (error && (error.text || error.message)) {
+                                reason += " (" + (error.text || error.message) + ")";
                             }
-
-                            $form.prepend(
-                                $('<div />', {
-                                    'class': 'flat-alert ' + cls,
-                                    'text': result
-                                }).append(
-                                    $('<a class="close d-flex" href="#"><i class="icon icon-times-solid"></i></a>')
-                                )
-                            );
-
-                            $form.find(':input').not('.submit').val('');
-                        },
-                        complete: function (xhr, status, error_thrown) {
-                            $form.find('.loading').remove();
-                        }
-                    });
+                            showAlert(reason, "msg-error");
+                        })
+                        .finally(function () {
+                            $form.find(".loading").remove();
+                        });
                 }
             });
         });

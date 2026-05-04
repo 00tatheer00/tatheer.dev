@@ -1113,6 +1113,100 @@ form .flat-alert {
   margin-top: 10px;
 }
 
+.premium-toast-wrap {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: min(420px, calc(100vw - 32px));
+}
+
+.premium-toast {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(18, 17, 22, 0.84);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  backdrop-filter: blur(18px) saturate(1.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 12px 14px 12px 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.premium-toast.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.premium-toast.success {
+  border-color: rgba(56, 214, 129, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(56, 214, 129, 0.22), 0 0 22px rgba(56, 214, 129, 0.16);
+}
+
+.premium-toast.error {
+  border-color: rgba(243, 80, 15, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(243, 80, 15, 0.25), 0 0 22px rgba(243, 80, 15, 0.2);
+}
+
+.premium-toast-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+}
+
+.premium-toast-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.premium-toast.success .premium-toast-icon {
+  color: #37d07f;
+}
+
+.premium-toast.error .premium-toast-icon {
+  color: #f3500f;
+}
+
+.premium-toast-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  word-break: break-word;
+}
+
+.premium-toast-close {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.premium-toast-close:hover {
+  color: #fff;
+}
+
 .form-search fieldset input {
   padding-right: 30px;
 }
@@ -2387,7 +2481,7 @@ header .mobile-menu {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   flex-shrink: 0;
 }
 .left-sidebar .profile-hero {
@@ -2396,7 +2490,7 @@ header .mobile-menu {
   max-width: min(300px, 100%);
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 2.25rem;
+  padding-bottom: 0;
 }
 .left-sidebar .profile-hero .avatar {
   border-radius: 18px;
@@ -2413,12 +2507,21 @@ header .mobile-menu {
   object-fit: cover;
   display: block;
 }
+.left-sidebar .profile-meta {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .left-sidebar .profile-name-script {
-  margin: 0;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin: 12px 0 0;
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  display: block;
   text-align: center;
   font-family: "Great Vibes", cursive;
   font-size: clamp(3rem, 5.5vw + 1.75rem, 4.5rem);
@@ -2427,12 +2530,12 @@ header .mobile-menu {
   color: #ffffff;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 8px 32px rgba(0, 0, 0, 0.35);
-  transform: translateY(46%);
+  transform: none;
   pointer-events: none;
 }
 .left-sidebar .infor {
-  margin-top: 10px;
-  margin-bottom: 22px;
+  margin-top: 8px;
+  margin-bottom: 10px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -2450,7 +2553,8 @@ header .mobile-menu {
   line-height: 1.45;
 }
 .left-sidebar .social-links {
-  margin-bottom: 18px;
+  margin-top: 8px;
+  margin-bottom: 0;
   padding-bottom: 0;
   flex-shrink: 0;
   gap: 10px;
@@ -3199,6 +3303,9 @@ header .mobile-menu {
 .section-services .services-wrap .heading .title {
   display: flex;
   gap: 7px;
+  font-size: clamp(40px, 3.4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.8px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -3206,7 +3313,8 @@ header .mobile-menu {
   transition: all 0.3s ease;
 }
 .section-services .services-wrap .heading .title span {
-  line-height: 42px;
+  line-height: 1.1;
+  font-size: clamp(16px, 1.2vw, 20px);
 }
 .section-services .services-wrap .list-text {
   display: flex;
@@ -4224,18 +4332,20 @@ header .mobile-menu {
     height: 7px;
   }
   .left-sidebar .image {
-    margin-bottom: 6px;
+    margin-bottom: 0;
   }
   .left-sidebar .profile-hero {
     max-width: min(256px, 100%);
-    padding-bottom: 1.85rem;
+    padding-bottom: 0;
   }
   .left-sidebar .profile-name-script {
     font-size: clamp(2.5rem, 4vw + 1.25rem, 3.5rem);
-    transform: translateY(44%);
+    margin-top: 10px;
+    transform: none;
   }
   .left-sidebar .infor {
-    margin-bottom: 14px;
+    margin-top: 6px;
+    margin-bottom: 10px;
   }
   .left-sidebar .infor .mail {
     margin-bottom: 0;
@@ -4247,7 +4357,8 @@ header .mobile-menu {
     line-height: 17px;
   }
   .left-sidebar .social-links {
-    margin-bottom: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
     padding-bottom: 0;
   }
   .left-sidebar .social-links a {
@@ -4353,20 +4464,23 @@ header .mobile-menu {
     margin-bottom: 24px;
   }
   .left-sidebar .infor {
-    margin-bottom: 20px;
+    margin-top: 8px;
+    margin-bottom: 10px;
   }
   .left-sidebar .image {
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
   .left-sidebar .profile-hero {
     max-width: 220px;
-    padding-bottom: 1.75rem;
+    padding-bottom: 0;
   }
   .left-sidebar .profile-name-script {
     font-size: clamp(2.35rem, 6vw + 1rem, 3.25rem);
+    margin-top: 8px;
   }
   .left-sidebar .social-links {
-    margin-bottom: 22px;
+    margin-top: 6px;
+    margin-bottom: 0;
     padding-bottom: 0;
   }
   .left-sidebar .bot-button {
@@ -4669,8 +4783,8 @@ header .mobile-menu {
     padding: 30px 15px;
   }
   .section-services .services-wrap .heading .title {
-    font-size: 32px !important;
-    line-height: 40px !important;
+    font-size: 30px !important;
+    line-height: 36px !important;
     letter-spacing: -1px !important;
   }
   .section-about .heading {
