@@ -334,8 +334,15 @@
         $(document).scroll(function () {
             sectionIds.each(function () {
                 let container = $(this).attr('href');
-                let containerOffset = $(container).offset().top;
-                let containerHeight = $(container).outerHeight();
+                if (!container || container.charAt(0) !== '#') {
+                    return;
+                }
+                let $container = $(container);
+                if (!$container.length) {
+                    return;
+                }
+                let containerOffset = $container.offset().top;
+                let containerHeight = $container.outerHeight();
                 let containerBottom = containerOffset + containerHeight;
                 let scrollPosition = $(document).scrollTop();
                 if (scrollPosition < containerBottom - 20 && scrollPosition >= containerOffset - 20) {

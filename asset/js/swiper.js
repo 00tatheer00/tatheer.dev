@@ -148,8 +148,13 @@ if (document.querySelector(".slider-tech-stack1")) {
     });
 }
 
-if (".section-testimonial".length > 0) {
-    var swiper1 = new Swiper(".slider-testimonial", {
+if (document.querySelector(".section-testimonial")) {
+    var swiperTestimonialCustomer = new Swiper(".slider-customer", {
+        spaceBetween: 0,
+        speed: 1500,
+    });
+
+    var swiperTestimonialMain = new Swiper(".slider-testimonial", {
         slidesPerView: 1,
         spaceBetween: 15,
         speed: 1500,
@@ -167,21 +172,16 @@ if (".section-testimonial".length > 0) {
             type: "fraction"
         },
         thumbs: {
-            swiper: swiper2,
+            swiper: swiperTestimonialCustomer,
         },
     });
 
-    var swiper2 = new Swiper(".slider-customer", {
-        spaceBetween: 0,
-        speed: 1500,
+    swiperTestimonialMain.on("slideChange", function () {
+        swiperTestimonialCustomer.slideTo(this.activeIndex);
     });
 
-    swiper1.on("slideChange", function () {
-        swiper2.slideTo(this.activeIndex);
-    });
-
-    swiper2.on("slideChange", function () {
-        swiper1.slideTo(this.activeIndex);
+    swiperTestimonialCustomer.on("slideChange", function () {
+        swiperTestimonialMain.slideTo(this.activeIndex);
     });
 
     $(".slider-testimonial").on("mouseenter", function () {
@@ -189,14 +189,12 @@ if (".section-testimonial".length > 0) {
     }).on("mouseleave", function () {
         this.swiper.autoplay.start();
     });
-  
-
 }
 
 if (document.querySelector(".slider-partners")) {
     const swiper = new Swiper(".slider-partners", {
         slidesPerView: "auto",
-        spaceBetween: 0,
+        spaceBetween: 16,
         loop: true,
         speed: 2000,
         autoplay: {

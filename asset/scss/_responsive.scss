@@ -17,30 +17,64 @@
 /* --- Screen Max Width --- */
 @media (max-width: 1700px) {
     .left-sidebar {
-        max-width: 350px;
-        padding: 32px 24px;
+        max-width: 318px;
+        padding: 22px 18px;
+        left: 28px;
+        top: 28px;
+        bottom: 28px;
         .heading {
-            margin-bottom: 32px;
-            gap: 20px;
+            margin-bottom: 18px;
+            gap: 8px;
+            > img {
+                max-height: 32px;
+            }
+        }
+        .box-status {
+            padding: 4px 12px 4px 14px;
+            .text-body-1 {
+                font-size: 12px;
+                line-height: 16px;
+            }
+            .dot {
+                width: 7px;
+                height: 7px;
+            }
         }
         .image {
-            margin-bottom: 25px;
+            margin-bottom: 16px;
             .avatar {
-                max-width: 220px;
-                margin-bottom: -30px;
-            }
-            .signature {
-                width: 150px;
-            }
-        }
-        .infor {
-            margin-bottom: 23px;
-            .mail {
+                max-width: min(256px, 100%);
                 margin-bottom: 0;
             }
         }
+        .infor {
+            margin-bottom: 14px;
+            .mail {
+                margin-bottom: 0;
+                font-size: 14px;
+                line-height: 20px;
+            }
+            .address {
+                font-size: 12px;
+                line-height: 17px;
+            }
+        }
         .social-links {
-            margin-bottom: 55px;
+            margin-bottom: auto;
+            padding-bottom: 16px;
+            a {
+                width: 36px;
+                height: 36px;
+                font-size: 15px;
+            }
+        }
+        .bot-button {
+            padding: 2px 2px 2px 16px;
+            .icon {
+                width: 40px;
+                height: 40px;
+                font-size: 15px;
+            }
         }
     }
     .tf-sidebar-menu {
@@ -68,6 +102,8 @@
     }
     .right-nav {
         right: 28px;
+        top: 98px;
+        bottom: 28px;
         a {
             width: 46px;
             height: 46px;
@@ -102,6 +138,10 @@
     .left-sidebar {
         position: unset;
         transform: none;
+        top: auto;
+        bottom: auto;
+        max-height: none;
+        display: block;
         max-width: 66.66666667%;
         margin-top: 15px;
         margin-left: auto;
@@ -113,16 +153,18 @@
             margin-bottom: 20px;
         }
         .image {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             .avatar {
-                max-width: 320px;
-            }
-            .signature {
-                width: 200px;
+                max-width: 220px;
+                margin-bottom: 0;
             }
         }
         .social-links {
-            margin-bottom: 30px;
+            margin-bottom: 22px;
+            padding-bottom: 0;
+        }
+        .bot-button {
+            margin-top: 0;
         }
     }
     .section-hero {
@@ -340,6 +382,11 @@
     }
     .tf-btn-menu {
         top: 20px;
+        right: 20px;
+    }
+    .right-nav {
+        top: 86px;
+        bottom: 20px;
         right: 20px;
     }
     .indicators .indicators-wrap {
