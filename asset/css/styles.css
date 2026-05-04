@@ -4880,4 +4880,118 @@ header .mobile-menu {
   }
 }
 
+/* --- Mobile responsiveness hardening --- */
+@media (max-width: 991px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  #wrapper {
+    overflow-x: clip;
+  }
+
+  .left-sidebar {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: calc(100% - 24px) !important;
+    max-width: 680px !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 76px auto 20px !important;
+    z-index: 10 !important;
+  }
+
+  .main-content,
+  .tf-footer.style-1 {
+    padding-left: 0 !important;
+  }
+
+  .main-content {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .right-nav {
+    display: none !important;
+  }
+
+  .tf-btn-menu {
+    top: 14px !important;
+    right: 14px !important;
+  }
+
+  .tf-container,
+  .tf-container .row,
+  .tf-container .row > *,
+  .wrapper-content,
+  .wrapper-content > *,
+  .section-services .section-services-inner,
+  .section-testimonial-inner,
+  .section-process .process-item,
+  .section-contact-inner {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .left-sidebar {
+    width: calc(100% - 20px) !important;
+    margin-top: 68px !important;
+    padding: 18px 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .left-sidebar .profile-hero {
+    max-width: min(220px, 100%);
+  }
+
+  .left-sidebar .social-links a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .section-hero .main-title .title br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tf-container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .tf-container .row {
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+  }
+
+  .tf-container .row > * {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  h1,
+  .h1 {
+    font-size: 34px !important;
+    line-height: 1.15 !important;
+  }
+
+  .text-display-1 {
+    font-size: 52px !important;
+    line-height: 1.05 !important;
+  }
+
+  .text-display-2 {
+    font-size: 38px !important;
+    line-height: 1.1 !important;
+  }
+}
+
 
