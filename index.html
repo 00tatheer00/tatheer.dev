@@ -35,7 +35,7 @@
     <meta name="twitter:image:alt" content="Portrait of S Tatheer Hussain, full-stack developer and technical trainer">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#111111">
+    <meta name="theme-color" content="#005fea">
     <meta name="color-scheme" content="dark">
 
     <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.css">
@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="asset/font/fonts.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="asset/icons/icomoon/style.css">
 
@@ -59,13 +60,19 @@
     <link rel="preload" as="image" href="asset/images/tatheer-profile.png" fetchpriority="high">
 </head>
 <body class="counter-scroll">
-    <div id="site-loader" aria-hidden="true">
-        <span class="loader-dot"></span>
+    <div id="site-loader" class="site-loader" role="progressbar" aria-busy="true" aria-label="Loading Tatheer portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuetext="Loading">
+        <div class="site-loader-backdrop"></div>
+        <div class="site-loader-inner">
+            <div class="site-loader-name" aria-hidden="true">
+                <span class="site-loader-letter" style="--i:0">T</span><span class="site-loader-letter" style="--i:1">a</span><span class="site-loader-letter" style="--i:2">t</span><span class="site-loader-letter" style="--i:3">h</span><span class="site-loader-letter" style="--i:4">e</span><span class="site-loader-letter" style="--i:5">e</span><span class="site-loader-letter" style="--i:6">r</span>
+            </div>
+            <div class="site-loader-bar" aria-hidden="true"><span class="site-loader-bar-fill"></span></div>
+        </div>
     </div>
     <!-- Start Wrapper -->
     <div id="wrapper">
 
-        <video class="body-overlay" muted autoplay loop playsinline webkit-playsinline disablepictureinpicture>
+        <video class="body-overlay" muted autoplay loop playsinline webkit-playsinline disablepictureinpicture preload="none">
             <source src="asset/images/bg-3d/video4.mp4" type="video/mp4">
         </video>
 
@@ -1704,27 +1711,26 @@
     }
     </script>
 
-    <!-- Javascript -->
-    <script src="asset/js/bootstrap.min.js"></script>
-    <script src="asset/js/jquery.min.js"></script>
-    <script src="asset/js/jquery.validate.min.js"></script>
-    <script src="asset/js/lazysize.min.js"></script>
-    <script src="asset/js/wow.min.js"></script>
-    <script src="asset/js/swiper-bundle.min.js"></script>
-    <script src="asset/js/swiper.js"></script>
-    <script src="asset/js/gsap.min.js"></script>
-    <script src="asset/js/Splitetext.js"></script>
-    <script src="asset/js/ScrollTrigger.min.js"></script>
-    <script src="asset/js/ScrollSmooth.js"></script>
-    <script src="asset/js/handleeffectgsap.js"></script>
-    <script src="asset/js/odometer.min.js"></script>
-    <script src="asset/js/counter.js"></script>
-
-    <script src="asset/js/infinityslide.js"></script>
-    <script src="asset/js/plugin.js"></script>
-    <script src="asset/js/lightbox.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="asset/js/main.js"></script>
+    <!-- Javascript (defer: ordered execution after HTML parse; jQuery before Bootstrap) -->
+    <script defer src="asset/js/jquery.min.js"></script>
+    <script defer src="asset/js/bootstrap.min.js"></script>
+    <script defer src="asset/js/jquery.validate.min.js"></script>
+    <script defer src="asset/js/lazysize.min.js"></script>
+    <script defer src="asset/js/wow.min.js"></script>
+    <script defer src="asset/js/swiper-bundle.min.js"></script>
+    <script defer src="asset/js/swiper.js"></script>
+    <script defer src="asset/js/gsap.min.js"></script>
+    <script defer src="asset/js/Splitetext.js"></script>
+    <script defer src="asset/js/ScrollTrigger.min.js"></script>
+    <script defer src="asset/js/ScrollSmooth.js"></script>
+    <script defer src="asset/js/handleeffectgsap.js"></script>
+    <script defer src="asset/js/odometer.min.js"></script>
+    <script defer src="asset/js/counter.js"></script>
+    <script defer src="asset/js/infinityslide.js"></script>
+    <script defer src="asset/js/plugin.js"></script>
+    <script defer src="asset/js/lightbox.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script defer src="asset/js/main.js"></script>
     <!-- /Javascript -->
 
 </body>

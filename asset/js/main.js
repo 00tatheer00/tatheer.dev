@@ -405,7 +405,107 @@
         });
     }
 
-    // Cursor-follow orange glow on cards
+    // Custom arrow cursor + SVG motion (desktop only; skips reduced-motion users)
+    var initCustomCursor = function () {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+            return;
+        }
+        if (!window.matchMedia("(pointer: fine)").matches) {
+            return;
+        }
+        if (window.matchMedia("(max-width: 991px)").matches) {
+            return;
+        }
+
+        var uid =
+            "sc" +
+            Math.random().toString(36).slice(2, 10) +
+            Math.random().toString(36).slice(2, 6);
+        var wrap = document.createElement("div");
+        wrap.className = "site-cursor";
+        wrap.setAttribute("aria-hidden", "true");
+        wrap.innerHTML =
+            '<svg class="site-cursor-svg" width="36" height="36" viewBox="-1.5 -1.5 35 35" aria-hidden="true" overflow="visible">' +
+            "<defs>" +
+            '<linearGradient id="' +
+            uid +
+            '-fill" x1="0%" y1="100%" x2="100%" y2="0%">' +
+            '<stop offset="0%" stop-color="#021327"/>' +
+            '<stop offset="38%" stop-color="#003d99"/>' +
+            '<stop offset="72%" stop-color="#005fea"/>' +
+            '<stop offset="100%" stop-color="#8ec5ff"/>' +
+            '<animate attributeName="x2" values="85%;115%;85%" dur="3.2s" repeatCount="indefinite"/>' +
+            '<animate attributeName="y1" values="100%;70%;100%" dur="3.2s" repeatCount="indefinite"/>' +
+            "</linearGradient>" +
+            '<linearGradient id="' +
+            uid +
+            '-shine" gradientUnits="userSpaceOnUse" x1="0" y1="32" x2="28" y2="0">' +
+            '<stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>' +
+            '<stop offset="45%" stop-color="#ffffff" stop-opacity="0.45"/>' +
+            '<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>' +
+            '<animateTransform attributeName="gradientTransform" type="translate" values="-10 6; 12 -8; -10 6" dur="2.4s" repeatCount="indefinite"/>' +
+            "</linearGradient>" +
+            '<clipPath id="' +
+            uid +
+            '-clip">' +
+            '<path d="M0 0 L0 24 L7 17 L11 28 L15 26 L11 15 L24 15 L0 0"/>' +
+            "</clipPath>" +
+            "</defs>" +
+            '<path class="site-cursor-shape" fill="url(#' +
+            uid +
+            '-fill)" stroke="#0c0c0c" stroke-width="1.35" stroke-linejoin="round" d="M0 0 L0 24 L7 17 L11 28 L15 26 L11 15 L24 15 L0 0"/>' +
+            '<g clip-path="url(#' +
+            uid +
+            '-clip)">' +
+            '<rect x="-6" y="-6" width="44" height="44" fill="url(#' +
+            uid +
+            '-shine)" opacity="0.75"/>' +
+            '<path fill="none" stroke="#cff0ff" stroke-width="1.1" stroke-linecap="round" d="M8 4 L10 13 M6.5 11.5 L12.5 9 M9.5 15.5 L16 17.5">' +
+            '<animate attributeName="opacity" values="0.2;1;0.35;1;0.2" dur="0.75s" repeatCount="indefinite"/>' +
+            "</path>" +
+            '<path fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" d="M9 5 L11 14">' +
+            '<animate attributeName="opacity" values="0;0.95;0" dur="0.9s" repeatCount="indefinite"/>' +
+            "</path>" +
+            "</g>" +
+            "</svg>";
+
+        document.body.appendChild(wrap);
+        document.body.classList.add("site-cursor-on");
+
+        var pointerSelector =
+            "a, button, input, textarea, select, [role='button'], .tf-btn-menu, .close-canvas, label, .scroll-to, .overlay, [type='submit']";
+
+        var cx = 0;
+        var cy = 0;
+        var rafId = null;
+
+        function paintCursor() {
+            rafId = null;
+            wrap.style.transform =
+                "translate3d(" + cx + "px," + cy + "px,0)";
+        }
+
+        function onMove(e) {
+            cx = e.clientX;
+            cy = e.clientY;
+            if (rafId === null) {
+                rafId = window.requestAnimationFrame(paintCursor);
+            }
+            var t = e.target;
+            var interactive = t.closest && t.closest(pointerSelector);
+            document.body.classList.toggle(
+                "site-cursor-pointer",
+                !!interactive
+            );
+        }
+
+        window.addEventListener("mousemove", onMove, { passive: true });
+    };
+
+    // Cursor-follow primary glow on cards
     var initCardSpotlight = function () {
         if (
             window.matchMedia &&
@@ -460,17 +560,38 @@
         });
     };
 
-    // site_loader
+    // site_loader — wait for window load + minimum time so “Tatheer” animation reads
     var site_loader = function () {
-        var markLoaded = function () {
-            $("body").addClass("site-loaded");
-        };
+        var minShowMs = 920;
+        var t0 = Date.now();
+        var revealed = false;
+        var scheduled = false;
+        var $loader = $("#site-loader");
 
-        // Fallback: always hide quickly even if load event is delayed.
-        setTimeout(markLoaded, 450);
-        $(window).on("load", function () {
-            markLoaded();
-        });
+        function scheduleReveal() {
+            if (revealed || scheduled) {
+                return;
+            }
+            scheduled = true;
+            var wait = Math.max(0, minShowMs - (Date.now() - t0));
+            setTimeout(function () {
+                if (revealed) {
+                    return;
+                }
+                revealed = true;
+                $("body").addClass("site-loaded");
+                if ($loader.length) {
+                    $loader.attr({
+                        "aria-busy": "false",
+                        "aria-hidden": "true",
+                        "aria-valuetext": "Loaded",
+                    });
+                }
+            }, wait);
+        }
+
+        $(window).on("load", scheduleReveal);
+        setTimeout(scheduleReveal, 12000);
     }
 
     // Dom Ready
@@ -483,6 +604,7 @@
         canvas();
         infiniteSlide();
         stickyTabs();
+        initCustomCursor();
         initCardSpotlight();
     });
 })(jQuery);
