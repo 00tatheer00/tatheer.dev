@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Host: https://tatheer.dev
 
 Sitemap: https://tatheer.dev/sitemap.xml

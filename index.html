@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>S Tatheer Hussain | Full-Stack Developer &amp; Technical Trainer</title>
     <meta name="description" content="S Tatheer Hussain builds SaaS, web, and mobile products and trains developers across Pakistan and internationally. PHP, JavaScript, React, Next.js, APIs, cloud deployment, and classroom delivery.">
     <meta name="keywords" content="S Tatheer Hussain, full stack developer Pakistan, technical trainer Peshawar, PHP trainer, React developer, Next.js, SaaS developer, NAVTTC, Arfa Karim Technology Incubator">
     <meta name="author" content="S Tatheer Hussain">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="https://tatheer.dev/">
+    <link rel="alternate" hreflang="en" href="https://tatheer.dev/">
+    <link rel="alternate" hreflang="x-default" href="https://tatheer.dev/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tatheer.dev/">
     <meta property="og:title" content="S Tatheer Hussain | Full-Stack Developer &amp; Technical Trainer">
     <meta property="og:description" content="Full-stack engineering, SaaS delivery, and professional training for institutes, startups, and product teams.">
     <meta property="og:image" content="https://tatheer.dev/asset/images/tatheer-profile.png">
+    <meta property="og:image:secure_url" content="https://tatheer.dev/asset/images/tatheer-profile.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="Portrait of S Tatheer Hussain, full-stack developer and technical trainer">
+    <meta property="og:site_name" content="S Tatheer Hussain Portfolio">
     <meta property="og:locale" content="en_US">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="S Tatheer Hussain | Full-Stack Developer &amp; Technical Trainer">
     <meta name="twitter:description" content="Full-stack engineering, SaaS delivery, and technical training.">
     <meta name="twitter:image" content="https://tatheer.dev/asset/images/tatheer-profile.png">
+    <meta name="twitter:image:alt" content="Portrait of S Tatheer Hussain, full-stack developer and technical trainer">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#111111">
@@ -41,8 +54,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="asset/icons/icomoon/style.css">
 
-    <link rel="icon" href="asset/images/logo/logo.png" type="image/png">
+    <link rel="icon" href="asset/images/logo/logo.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="asset/images/logo/logo.png">
+    <link rel="preload" as="image" href="asset/images/tatheer-profile.png" fetchpriority="high">
 </head>
 <body class="counter-scroll">
     <div id="site-loader" aria-hidden="true">
@@ -234,7 +248,7 @@
             <div class="image">
                 <div class="profile-hero">
                     <div class="avatar avatar-wrap">
-                        <img class="lazyload avatar-bg" src="asset/images/tatheer-profile.png" data-src="asset/images/tatheer-profile.png" alt="S Tatheer Hussain">
+                        <img class="avatar-bg" src="asset/images/tatheer-profile.png" alt="S Tatheer Hussain" loading="eager" fetchpriority="high" decoding="async">
                         <img class="lazyload avatar-no-bg" style="display: none;" src="asset/images/tatheer-profile.png" data-src="asset/images/tatheer-profile.png" alt="S Tatheer Hussain">
                     </div>
                 </div>
@@ -268,7 +282,7 @@
         <!-- /left-sidebar -->
 
         <!-- main-content -->
-        <div class="main-content relative">
+        <div class="main-content relative" role="main">
             <!-- section-hero -->
             <section class="section-hero" id="home">
                 <div class="tf-container">
@@ -1560,24 +1574,133 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "S Tatheer Hussain",
-      "url": "https://tatheer.dev/",
-      "image": "https://tatheer.dev/asset/images/tatheer-profile.png",
-      "jobTitle": "Software Developer & Technical Trainer",
-      "email": "tatheerabidi00@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Peshawar",
-        "addressCountry": "PK"
-      },
-      "sameAs": [
-        "https://linkedin.com/in/tatheer",
-        "https://github.com/00tatheer00",
-        "https://instagram.com/s_tatheer_hussain",
-        "https://facebook.com/tatheer.hussainsth"
-      ],
-      "knowsAbout": ["Full-stack web development", "PHP", "JavaScript", "React", "Next.js", "Technical training", "SaaS"]
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://tatheer.dev/#person",
+          "name": "S Tatheer Hussain",
+          "url": "https://tatheer.dev/",
+          "image": "https://tatheer.dev/asset/images/tatheer-profile.png",
+          "jobTitle": "Software Developer & Technical Trainer",
+          "description": "Full-stack software developer and technical trainer building SaaS, web, and mobile products for startups, institutes, and growing companies.",
+          "email": "mailto:tatheerabidi00@gmail.com",
+          "knowsLanguage": ["English", "Urdu"],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Peshawar",
+            "addressCountry": "PK"
+          },
+          "sameAs": [
+            "https://linkedin.com/in/tatheer",
+            "https://github.com/00tatheer00",
+            "https://instagram.com/s_tatheer_hussain",
+            "https://facebook.com/tatheer.hussainsth"
+          ],
+          "knowsAbout": [
+            "Full-stack web development",
+            "SaaS development",
+            "PHP",
+            "JavaScript",
+            "TypeScript",
+            "React",
+            "Next.js",
+            "Node.js",
+            "API architecture",
+            "Technical training"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tatheer.dev/#website",
+          "url": "https://tatheer.dev/",
+          "name": "S Tatheer Hussain Portfolio",
+          "description": "Portfolio website for S Tatheer Hussain, software developer and technical trainer.",
+          "publisher": {
+            "@id": "https://tatheer.dev/#person"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://tatheer.dev/#webpage",
+          "url": "https://tatheer.dev/",
+          "name": "S Tatheer Hussain | Full-Stack Developer & Technical Trainer",
+          "isPartOf": {
+            "@id": "https://tatheer.dev/#website"
+          },
+          "about": {
+            "@id": "https://tatheer.dev/#person"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://tatheer.dev/asset/images/tatheer-profile.png"
+          },
+          "description": "S Tatheer Hussain builds SaaS, web, and mobile products and trains developers across Pakistan and internationally.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://tatheer.dev/#service",
+          "name": "S Tatheer Hussain Software Services",
+          "url": "https://tatheer.dev/#services",
+          "provider": {
+            "@id": "https://tatheer.dev/#person"
+          },
+          "areaServed": "Worldwide",
+          "serviceType": [
+            "SaaS Development",
+            "Software Development",
+            "App Development",
+            "Technical Training"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://tatheer.dev/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What kind of projects do you take on?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I build SaaS products, custom business systems, and web/mobile apps for startups, institutes, and growing companies."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does a project usually take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Small projects can take 2 to 4 weeks, while complete platforms usually take 6 to 12 weeks based on scope."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you also provide training?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I provide full stack development training, advanced web/app coaching, and project-based mentorship."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you work with international clients?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I work remotely with local and international clients and provide structured communication throughout the project."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can we start?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Share your requirements in the contact form. I will review them and respond with a roadmap, timeline, and quote."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
