@@ -1,22 +1,25 @@
 
 .accordion-item {
     position: relative;
-    padding-top: 32px;
-    padding-right: 55px;
-    padding-bottom: 29px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    @include glass-premium(22px);
+    margin-bottom: 16px;
+    padding: 28px 55px 26px 28px;
+    border-bottom: none;
     .accordion-head {
         letter-spacing: 0;
         @include transition3();
         span.icon {
             position: absolute;
-            right: 0;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             width: 48px;
             height: 48px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             @include transition3();
             &::before {
                 position: absolute;
@@ -55,5 +58,8 @@
                 opacity: 0;
             }
         }
+    }
+    &:last-child {
+        margin-bottom: 0;
     }
 }
