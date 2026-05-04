@@ -1,0 +1,38 @@
+// Cursor-following primary glow on interactive cards (see main.js initCardSpotlight).
+
+.spotlight-card {
+    position: relative;
+    isolation: isolate;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        background: radial-gradient(
+            circle min(380px, max(140px, 85%)) at var(--spot-x, 50%) var(--spot-y, 50%),
+            color-mix(in srgb, var(--primary) 34%, transparent) 0%,
+            color-mix(in srgb, var(--primary) 12%, transparent) 28%,
+            transparent 55%
+        );
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spotlight-card::after {
+        transition-duration: 0.01ms;
+    }
+}

@@ -20,8 +20,11 @@
         max-width: 318px;
         padding: 22px 18px;
         left: 28px;
-        top: 28px;
-        bottom: 28px;
+        top: 78px;
+        bottom: auto;
+        transform: none;
+        height: calc(100vh - 106px);
+        max-height: calc(100vh - 106px);
         .heading {
             margin-bottom: 18px;
             gap: 8px;
@@ -137,19 +140,36 @@
         position: fixed;
     }
     .right-nav {
-        display: none;
+        display: flex;
+        position: fixed;
+        right: 20px;
+        top: 86px;
+        bottom: 20px;
+        z-index: 120;
+        a {
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+        }
+    }
+    .main-content {
+        padding-left: calc(min(340px, calc(100vw - 40px)) + 36px);
+    }
+    .tf-footer.style-1 {
+        padding-left: calc(min(340px, calc(100vw - 40px)) + 36px);
     }
     .left-sidebar {
-        position: unset;
-        transform: none;
-        top: auto;
+        position: fixed;
+        left: 20px;
+        top: 86px;
         bottom: auto;
-        max-height: none;
-        display: block;
-        max-width: 66.66666667%;
-        margin-top: 15px;
-        margin-left: auto;
-        margin-right: auto;
+        transform: none;
+        height: calc(100vh - 116px);
+        max-height: calc(100vh - 116px);
+        width: min(340px, calc(100vw - 40px));
+        max-width: min(340px, calc(100vw - 40px));
+        margin: 0;
+        z-index: 120;
         .heading {
             margin-bottom: 24px;
         }
@@ -175,12 +195,16 @@
         }
     }
     .section-hero {
-        padding: 50px 0 80px;
+        margin-top: -24px;
+        padding: 0 0 60px;
         .infor {
-            margin-bottom: 30px;
+            margin-bottom: 14px;
         }
         .main-title {
             margin-bottom: 65px;
+            .text {
+                max-width: 100%;
+            }
         }
     }
     .indicators .list-tags {
@@ -202,6 +226,17 @@
 }
 
 @media (max-width: 991px) {
+    .right-nav {
+        right: 12px;
+        top: 84px;
+        bottom: 16px;
+        a {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+    }
+
     .section-services {
         .subtitle {
             margin-bottom: 40px;
@@ -253,9 +288,18 @@
         }
     }
     .left-sidebar {
-        max-width: 100%;
-        margin-left: 15px;
-        margin-right: 15px;
+        left: 15px;
+        top: 84px;
+        width: min(320px, calc(100vw - 30px));
+        max-width: min(320px, calc(100vw - 30px));
+        height: calc(100vh - 104px);
+        max-height: calc(100vh - 104px);
+    }
+    .main-content {
+        padding-left: calc(min(320px, calc(100vw - 30px)) + 24px);
+    }
+    .tf-footer.style-1 {
+        padding-left: calc(min(320px, calc(100vw - 30px)) + 24px);
     }
 
     .text-display-1 {
@@ -373,21 +417,60 @@
         width: 100px;
     }
     .left-sidebar {
-        padding: 28px 20px;
+        left: 12px;
+        top: 76px;
+        width: min(290px, calc(100vw - 24px));
+        max-width: min(290px, calc(100vw - 24px));
+        height: calc(100vh - 94px);
+        max-height: calc(100vh - 94px);
+        padding: 22px 16px;
+    }
+    .main-content {
+        padding-left: calc(min(290px, calc(100vw - 24px)) + 18px);
+    }
+    .tf-footer.style-1 {
+        padding-left: calc(min(290px, calc(100vw - 24px)) + 18px);
     }
     .tf-btn-menu {
         top: 20px;
         right: 20px;
     }
     .right-nav {
-        top: 86px;
-        bottom: 20px;
-        right: 20px;
+        display: flex;
+        top: 76px;
+        bottom: 12px;
+        right: 8px;
+        padding: 3px;
+        a {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            .tooltip {
+                display: none;
+            }
+        }
     }
     .indicators .indicators-wrap {
         flex-wrap: wrap;
         .indicators-item {
             width: 100%;
+            min-height: auto;
+            .indicators-title {
+                margin-bottom: 28px;
+            }
+        }
+    }
+    .section-hero {
+        margin-top: -14px;
+        padding-top: 0;
+        .main-title {
+            margin-bottom: 42px;
+        }
+        .main-title .title {
+            line-height: 1.15;
+        }
+        .main-title .text {
+            line-height: 1.55;
         }
     }
     .works-wrap .works-item {
