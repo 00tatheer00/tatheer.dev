@@ -296,9 +296,6 @@
         $(".tf-btn-menu").on("click", function () {
             $(".tf-sidebar-menu").addClass("active");
         });
-        $(".btn-setting-color").on("click", function () {
-            $(".tf-setting-color").addClass("active");
-        });
 
         $(".close-canvas").on("click", function () {
             $(this).closest('.tf-canvas').removeClass("active");
@@ -354,22 +351,6 @@
         });
     }
 
-    // active_item
-    var active_item = function () {
-        $(".choose-item").on("click", function () {
-            $(this).closest(".list-choose").find(".choose-item").removeClass("active");
-            $(this).addClass("active");
-        });
-    }
-
-    // settings_color
-    var settings_color = function () {
-        $(".settings-color a").on("click", function () {
-            var index =  $(this).index() + 1;
-            $("body").attr("data-color-primary", "color-primary-" + index);
-        })
-    }
-
     // site_loader
     var site_loader = function () {
         var markLoaded = function () {
@@ -393,7 +374,5 @@
         canvas();
         infiniteSlide();
         stickyTabs();
-        active_item();
-        settings_color();
     });
 })(jQuery);

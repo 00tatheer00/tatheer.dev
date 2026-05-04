@@ -68,16 +68,18 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    a {
-        display: flex;
+    a,
+    span {
+        display: inline-flex;
         align-items: center;
         padding: 5px 24px;
         border-radius: 99px;
         background: #25252580;
-        &:hover {
-            background: #fff;
-            color: #000;
-        }
+    }
+    a:hover,
+    span:hover {
+        background: #fff;
+        color: #000;
     }
 }
 

@@ -1,54 +1,54 @@
 <?php
 
-// define("WEBMASTER_EMAIL", 'wordpressriver@gmail.com');
-//$address = "example@themeforest.net";
-$address = "taatheerabidi00@gmail.com";
-if (!defined("PHP_EOL")) define("PHP_EOL", "\r\n");
+$address = 'tatheerabidi00@gmail.com';
+
+if (!defined('PHP_EOL')) {
+    define('PHP_EOL', "\r\n");
+}
 
 $error = false;
-$fields = array('mail','phone','message' );
+$fields = array('mail', 'phone', 'message');
 
-foreach ( $fields as $field ) {
-	if ( empty($_POST[$field]) || trim($_POST[$field]) == '' )
-		$error = true;
+foreach ($fields as $field) {
+    if (empty($_POST[$field]) || trim($_POST[$field]) === '') {
+        $error = true;
+    }
 }
 
-if ( !$error ) {
-
-	$mail = stripslashes($_POST['mail']);	
-	$phone = stripslashes($_POST['phone']);
-	$message = stripslashes($_POST['message']);
-
-	$e_subject = 'You\'ve been contacted by ' . $email . '.';
-	
-
-	// Configuration option.
-	// You can change this if you feel that you need to.
-	// Developers, you may wish to add more fields to the form, in which case you must be sure to add them here.
-
-	$e_body = "You have been contacted by: $email" . PHP_EOL . PHP_EOL;
-	$e_phone = "\r\nPhone: $phone" . PHP_EOL . PHP_EOL;
-
-	$msg = wordwrap( $e_body  , 70 );
-
-	$headers .= "Mail: $mail" . PHP_EOL;
-	$headers .= "Phone: $phone" . PHP_EOL;
-	$headers .= "Message: $message" . PHP_EOL;
-	// $headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
-	// $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
-
-	if(mail($address, $msg, $headers  )) {
-
-		// Email has sent successfully, echo a success page.
-	
-		echo 'Success';
-
-	} else {
-
-		echo 'ERROR!';
-
-	}
-
+if ($error) {
+    http_response_code(400);
+    echo 'ERROR!';
+    exit;
 }
 
-?>
+$mail = stripslashes($_POST['mail']);
+$phone = stripslashes($_POST['phone']);
+$message = stripslashes($_POST['message']);
+
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo 'ERROR!';
+    exit;
+}
+
+$subject = 'Portfolio contact from ' . $mail;
+$body = 'You received a message from your portfolio contact form.' . PHP_EOL . PHP_EOL;
+$body .= 'Email: ' . $mail . PHP_EOL;
+$body .= 'Phone: ' . $phone . PHP_EOL . PHP_EOL;
+$body .= 'Message:' . PHP_EOL . $message . PHP_EOL;
+
+$host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/^www\./i', '', (string) $_SERVER['HTTP_HOST']) : 'localhost';
+$fromMailbox = 'portfolio@' . $host;
+
+$headers = array();
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-Type: text/plain; charset=UTF-8';
+$headers[] = 'From: Portfolio <' . $fromMailbox . '>';
+$headers[] = 'Reply-To: ' . $mail;
+
+if (mail($address, $subject, $body, implode(PHP_EOL, $headers))) {
+    echo 'Success';
+} else {
+    http_response_code(500);
+    echo 'ERROR!';
+}

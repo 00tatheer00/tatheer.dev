@@ -41,11 +41,15 @@
             }
         }
         .image {
-            margin-bottom: 16px;
-            .avatar {
-                max-width: min(256px, 100%);
-                margin-bottom: 0;
-            }
+            margin-bottom: 6px;
+        }
+        .profile-hero {
+            max-width: min(256px, 100%);
+            padding-bottom: 1.85rem;
+        }
+        .profile-name-script {
+            font-size: clamp(2.5rem, 4vw + 1.25rem, 3.5rem);
+            transform: translateY(44%);
         }
         .infor {
             margin-bottom: 14px;
@@ -153,11 +157,14 @@
             margin-bottom: 20px;
         }
         .image {
-            margin-bottom: 18px;
-            .avatar {
-                max-width: 220px;
-                margin-bottom: 0;
-            }
+            margin-bottom: 10px;
+        }
+        .profile-hero {
+            max-width: 220px;
+            padding-bottom: 1.75rem;
+        }
+        .profile-name-script {
+            font-size: clamp(2.35rem, 6vw + 1rem, 3.25rem);
         }
         .social-links {
             margin-bottom: 22px;
@@ -354,18 +361,6 @@
     }
     .sidebar {
         margin-top: 50px;
-    }
-    .tf-setting-color .setting-color-option {
-        padding: 34px;
-        .heading {
-            margin-bottom: 30px;
-        }
-        .title {
-            margin-bottom: 15px;
-        }
-        .settings-themes {
-            gap: 30px;
-        }
     }
     .header-inner {
         flex-direction: column;
