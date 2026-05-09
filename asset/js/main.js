@@ -587,23 +587,32 @@
             ".section-contact-inner",
         ].join(",");
 
+        function updateSpotPosition(el, clientX, clientY) {
+            var rect = el.getBoundingClientRect();
+            var w = Math.max(rect.width, 1);
+            var h = Math.max(rect.height, 1);
+            var x = ((clientX - rect.left) / w) * 100;
+            var y = ((clientY - rect.top) / h) * 100;
+            x = Math.max(0, Math.min(100, x));
+            y = Math.max(0, Math.min(100, y));
+            el.style.setProperty("--spot-x", x.toFixed(2) + "%");
+            el.style.setProperty("--spot-y", y.toFixed(2) + "%");
+        }
+
         var seen = new Set();
+        var onEnter = function (e) {
+            updateSpotPosition(e.currentTarget, e.clientX, e.clientY);
+        };
         var onMove = function (e) {
             var el = e.currentTarget;
+            el._spotClientX = e.clientX;
+            el._spotClientY = e.clientY;
             if (el._spotlightRaf) {
                 return;
             }
-            var cx = e.clientX;
-            var cy = e.clientY;
             el._spotlightRaf = window.requestAnimationFrame(function () {
                 el._spotlightRaf = null;
-                var rect = el.getBoundingClientRect();
-                var w = Math.max(rect.width, 1);
-                var h = Math.max(rect.height, 1);
-                var x = ((cx - rect.left) / w) * 100;
-                var y = ((cy - rect.top) / h) * 100;
-                el.style.setProperty("--spot-x", x.toFixed(2) + "%");
-                el.style.setProperty("--spot-y", y.toFixed(2) + "%");
+                updateSpotPosition(el, el._spotClientX, el._spotClientY);
             });
         };
         var onLeave = function (e) {
@@ -622,6 +631,7 @@
             }
             seen.add(el);
             el.classList.add("spotlight-card");
+            el.addEventListener("mouseenter", onEnter, { passive: true });
             el.addEventListener("mousemove", onMove, { passive: true });
             el.addEventListener("mouseleave", onLeave, { passive: true });
         });
