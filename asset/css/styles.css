@@ -2553,47 +2553,12 @@ header .mobile-menu {
   position: fixed;
   border-radius: 26px;
   isolation: isolate;
-  /* Premium card: gradient border + layered face (opaque — no glass blur) */
-  border: 1px solid transparent;
-  background-color: #0a0d14;
-  background-image: linear-gradient(
-      185deg,
-      rgba(255, 255, 255, 0.11) 0%,
-      rgba(255, 255, 255, 0.03) 18%,
-      transparent 42%
-    ),
-    radial-gradient(
-      120% 80% at 100% 0%,
-      rgba(0, 95, 234, 0.18) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      90% 70% at 0% 100%,
-      rgba(0, 60, 150, 0.16) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      158deg,
-      #171f34 0%,
-      #111725 28%,
-      #0b0f1a 56%,
-      #06080f 100%
-    ),
-    linear-gradient(
-      132deg,
-      rgba(255, 255, 255, 0.35) 0%,
-      rgba(0, 95, 234, 0.55) 42%,
-      rgba(255, 255, 255, 0.18) 78%,
-      rgba(10, 14, 24, 0.95) 100%
-    );
-  background-origin: padding-box, padding-box, padding-box, padding-box, border-box;
-  background-clip: padding-box, padding-box, padding-box, padding-box, border-box;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset,
-    0 0 0 1px rgba(0, 0, 0, 0.35) inset,
-    0 36px 72px -20px rgba(0, 0, 0, 0.72),
-    0 14px 28px -12px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(0, 95, 234, 0.12),
-    0 0 48px -12px rgba(0, 95, 234, 0.14);
+  /* Flat dark card — motion is only the travelling primary-blue wash (ambient layer) */
+  background-color: #0a0c12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 32px 64px -24px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
   padding: 32px 26px 28px;
   z-index: 20;
   display: flex;
@@ -2606,61 +2571,70 @@ header .mobile-menu {
   scrollbar-color: var(--primary) rgba(255, 255, 255, 0.06);
 }
 
-/* Animated brand gradient — clipped inside card (spotlight uses parent ::before/::after) */
+/* Travelling primary-blue fade behind content (spotlight uses parent ::before/::after) */
 .left-sidebar > .left-sidebar__ambient {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   overflow: hidden;
   pointer-events: none;
-  /* Below sidebar content (z-index 2 via .spotlight-card > *), above base fill */
   z-index: 1;
   contain: paint;
 }
 .left-sidebar > .left-sidebar__ambient::before {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 180%;
-  height: 180%;
-  margin: -90% 0 0 -90%;
+  width: 120%;
+  height: 120%;
+  left: -10%;
+  top: -10%;
   transform-origin: 50% 50%;
   will-change: transform;
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    rgba(0, 95, 234, 0.5) 0deg,
-    rgba(40, 120, 255, 0.22) 55deg,
-    rgba(0, 40, 120, 0.4) 120deg,
-    rgba(90, 160, 255, 0.28) 200deg,
-    rgba(0, 70, 200, 0.45) 280deg,
-    rgba(0, 95, 234, 0.5) 360deg
+  /* Single brand colour — soft radial, blurred so it reads as a fade, not a hard gradient */
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 95, 234, 0.42) 0%,
+    rgba(0, 95, 234, 0.14) 38%,
+    rgba(0, 95, 234, 0) 68%
   );
-  filter: blur(48px);
-  -webkit-filter: blur(48px);
-  animation: left-sidebar-ambient-rotate 16s linear infinite;
+  filter: blur(42px);
+  -webkit-filter: blur(42px);
+  opacity: 0.95;
+  animation: left-sidebar-blue-travel 18s ease-in-out infinite;
 }
 .left-sidebar > .left-sidebar__ambient::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  /* Softer in the middle so the travelling blue shows; darker at edges for contrast */
   background: linear-gradient(
-    165deg,
-    rgba(8, 10, 16, 0.55) 0%,
-    rgba(8, 10, 16, 0.2) 40%,
-    rgba(8, 10, 16, 0.65) 100%
+    168deg,
+    rgba(9, 10, 13, 0.88) 0%,
+    rgba(9, 10, 13, 0.36) 45%,
+    rgba(9, 10, 13, 0.86) 100%
   );
   pointer-events: none;
 }
-@keyframes left-sidebar-ambient-rotate {
-  to {
-    transform: rotate(360deg);
+@keyframes left-sidebar-blue-travel {
+  0%,
+  100% {
+    transform: translate(-14%, -8%) scale(1);
+  }
+  25% {
+    transform: translate(18%, 5%) scale(1.05);
+  }
+  50% {
+    transform: translate(10%, 28%) scale(0.92);
+  }
+  75% {
+    transform: translate(-22%, 14%) scale(1.03);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .left-sidebar > .left-sidebar__ambient::before {
     animation: none;
+    transform: translate(0, 0);
   }
 }
 
