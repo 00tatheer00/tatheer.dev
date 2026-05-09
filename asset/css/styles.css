@@ -2071,22 +2071,26 @@ header .mobile-menu {
   backdrop-filter: blur(6px);
   font-size: 18px;
   transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease,
-    box-shadow 0.22s ease;
+    box-shadow 0.22s ease, backdrop-filter 0.22s ease;
 }
 .social-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 12, 20, 0.97);
   color: #fff;
-  border-color: var(--primary);
-  box-shadow: none;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 1px rgba(0, 95, 234, 0.35), 0 10px 28px rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 .social-links.style-1 a {
   background-color: rgb(17, 17, 17);
 }
 .social-links.style-1 a:hover {
-  background-color: rgb(17, 17, 17);
+  background-color: rgb(12, 12, 14);
   color: #fff;
-  border-color: var(--primary);
-  box-shadow: none;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 1px rgba(0, 95, 234, 0.35), 0 10px 28px rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .box-status {
@@ -2720,12 +2724,17 @@ header .mobile-menu {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none;
+  transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease,
+    box-shadow 0.22s ease, backdrop-filter 0.22s ease;
 }
 .left-sidebar .social-links a:hover {
-  border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--primary);
+  background: rgba(8, 10, 18, 0.98);
   color: #fff;
-  box-shadow: none;
+  box-shadow: 0 0 0 1px rgba(0, 95, 234, 0.45), 0 0 28px rgba(0, 95, 234, 0.35),
+    0 12px 32px rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 .left-sidebar .bot-button {
   display: flex;
