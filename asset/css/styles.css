@@ -2763,6 +2763,8 @@ header .mobile-menu {
   color: #111111;
   background-color: #fff;
   border-radius: 50%;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
 }
 .left-sidebar .bot-button .icon,
 .left-sidebar .bot-button .text {
@@ -2777,9 +2779,15 @@ header .mobile-menu {
 }
 .left-sidebar .bot-button:hover .icon {
   color: #111111;
+  transform: rotate(180deg);
 }
 .left-sidebar .bot-button:hover .text {
   color: #fff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .left-sidebar .bot-button:hover .icon {
+    transform: rotate(0deg);
+  }
 }
 
 .section-banner .heading {
