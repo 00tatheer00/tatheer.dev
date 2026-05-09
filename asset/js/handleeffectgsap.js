@@ -1,6 +1,18 @@
 gsap.registerPlugin(ScrollTrigger);
+/** ScrollTrigger: one-shot enter animations only (no scrub) for smooth native scrolling. */
+if (typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.config({ limitCallbacks: true });
+}
+
 (function ($) {
     ("use strict");
+
+    var stOnce = {
+        start: "top 92%",
+        toggleActions: "play none none none",
+        once: true,
+        fastScrollEnd: true,
+    };
 
     /* animation_text
   -------------------------------------------------------------------------*/
@@ -127,6 +139,8 @@ gsap.registerPlugin(ScrollTrigger);
                     scrollTrigger: {
                         trigger: el,
                         start: "top 86%",
+                        toggleActions: "play none none none",
+                        once: true,
                     },
                     rotateX: "0",
                     scale: 1,
@@ -138,127 +152,87 @@ gsap.registerPlugin(ScrollTrigger);
         });
     };
 
-    /* scrolling_effect
-  -------------------------------------------------------------------------*/
+    /* scrolling_effect — was scrub-based (heavy); now single play on enter */
     var scrolling_effect = function () {
-        if ($(".scrolling-effect").length > 0) {
-            var st = $(".scrolling-effect");
-            st.each(function (index, el) {
-                var settings = {
-                    scrollTrigger: {
-                        trigger: el,
-                        scrub: 3,
-                        start: "30px bottom",
-                        end: "bottom bottom",
-                        delay: 3,
-                        once: true,
-                    },
-                    duration: 0.9,
-                    ease: "power3.out",
-                };
-                if ($(el).hasClass("effectRight")) {
-                    settings.opacity = 0;
-                    settings.x = "80";
-                }
-                if ($(el).hasClass("effectLeft")) {
-                    settings.opacity = 0;
-                    settings.x = "-80";
-                }
-                if ($(el).hasClass("effectBottom")) {
-                    settings.opacity = 0;
-                    settings.y = "100";
-                }
-                if ($(el).hasClass("effectTop")) {
-                    settings.opacity = 0;
-                    settings.y = "-80";
-                }
-                if ($(el).hasClass("effectZoomIn")) {
-                    settings.opacity = 0;
-                    settings.scale = 0.5;
-                }
-                gsap.from(el, settings);
-            });
-        }
-    };
-
-    /* scrollTransform
-    -------------------------------------------------------------------------------------*/
-    var scrollTransform = function () {
-        const scrollTransformElements =
-            document.querySelectorAll(".scroll-tranform");
-        if (scrollTransformElements.length > 0) {
-            scrollTransformElements.forEach(function (element) {
-                const direction = element.dataset.direction || "up";
-                const distance = element.dataset.distance || "10%";
-                let animationProperty;
-                switch (direction.toLowerCase()) {
-                    case "left":
-                        animationProperty = { x: `-${distance}` };
-                        break;
-                    case "right":
-                        animationProperty = { x: `${distance}` };
-                        break;
-                    case "up":
-                        animationProperty = { y: `-${distance}` };
-                        break;
-                    case "down":
-                        animationProperty = { y: `${distance}` };
-                        break;
-                    default:
-                        animationProperty = { y: `-${distance}` };
-                }
-
-                gsap.to(element, {
-                    ...animationProperty,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top center",
-                        end: "bottom top",
-                        scrub: 2,
-                    },
-                });
-            });
-        }
-    };
-
-    /* animateImgScroll
-    -------------------------------------------------------------------------------------*/
-    const scrollBanners = () => {
-        const bannerStripes = document.querySelectorAll(
-            ".scroll-banners"
-        );
-        if (!bannerStripes.length) return;
-
-        bannerStripes.forEach((element) => {
-            const $element = $(element);
-
-            const settings = {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1,
-                    markers: false,
-                },
-                ease: "none",
+        if ($(".scrolling-effect").length === 0) return;
+        $(".scrolling-effect").each(function (index, el) {
+            var tween = {
+                opacity: 0,
+                duration: 0.72,
+                ease: "power3.out",
+                scrollTrigger: Object.assign({}, stOnce, { trigger: el }),
             };
-
-            if (
-                $element.hasClass("effect-left") ||
-                $element.hasClass("effect-right")
-            ) {
-                settings.x = "-25%";
-            }
-
-            gsap.to(element, settings);
+            if ($(el).hasClass("effectRight")) tween.x = 80;
+            if ($(el).hasClass("effectLeft")) tween.x = -80;
+            if ($(el).hasClass("effectBottom")) tween.y = 100;
+            if ($(el).hasClass("effectTop")) tween.y = -80;
+            if ($(el).hasClass("effectZoomIn")) tween.scale = 0.5;
+            gsap.from(el, tween);
         });
     };
 
-    // Dom Ready
+    /* scrollTransform — was scrub parallax; now one-shot from */
+    var scrollTransform = function () {
+        const scrollTransformElements =
+            document.querySelectorAll(".scroll-tranform");
+        if (!scrollTransformElements.length) return;
+
+        scrollTransformElements.forEach(function (element) {
+            const direction = element.dataset.direction || "up";
+            const distance = element.dataset.distance || "10%";
+            let fromProps = { opacity: 0.85 };
+            switch (direction.toLowerCase()) {
+                case "left":
+                    fromProps.x = `-${distance}`;
+                    break;
+                case "right":
+                    fromProps.x = distance;
+                    break;
+                case "up":
+                    fromProps.y = `-${distance}`;
+                    break;
+                case "down":
+                    fromProps.y = distance;
+                    break;
+                default:
+                    fromProps.y = `-${distance}`;
+            }
+
+            gsap.from(element, {
+                ...fromProps,
+                duration: 0.75,
+                ease: "power2.out",
+                scrollTrigger: Object.assign({}, stOnce, { trigger: element }),
+            });
+        });
+    };
+
+    /* scroll-banners — was scrub horizontal drift; now enter animation */
+    const scrollBanners = () => {
+        const bannerStripes = document.querySelectorAll(".scroll-banners");
+        if (!bannerStripes.length) return;
+
+        bannerStripes.forEach((element) => {
+            gsap.from(element, {
+                opacity: 0,
+                x: -32,
+                duration: 0.85,
+                ease: "power2.out",
+                scrollTrigger: Object.assign({}, stOnce, { trigger: element }),
+            });
+        });
+    };
+
     $(function () {
         scrollTransform();
         scrollBanners();
         scrolling_effect();
         animationText();
+    });
+
+    $(window).on("load", function () {
+        if (typeof ScrollTrigger !== "undefined") {
+            ScrollTrigger.refresh();
+        }
     });
 })(jQuery);

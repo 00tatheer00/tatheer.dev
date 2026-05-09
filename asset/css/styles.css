@@ -5261,4 +5261,24 @@ body.site-cursor-on.site-cursor-pointer .site-cursor-svg {
   }
 }
 
+/* IO reveal (replaces WOW.js — IntersectionObserver-driven) */
+.io-reveal.io-fade-up {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s;
+}
+.io-reveal.io-fade-up.io-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .io-reveal.io-fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 

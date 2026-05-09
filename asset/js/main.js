@@ -44,17 +44,16 @@
                 element.animation = gsap.to(element.charSplit.chars, {
                     scrollTrigger: {
                         trigger: element,
-                        start: "top 90%",
-                        end: "bottom 35%",
-                        toggleActions: "play none none reverse",
-                        scrub: true,
+                        start: "top 88%",
+                        toggleActions: "play none none none",
+                        once: true,
                     },
                     color: "#ffffff",
                     stagger: {
-                        each: 0.05,
+                        each: 0.04,
                         from: "start",
                     },
-                    duration: 0.5,
+                    duration: 0.65,
                     ease: "power2.out",
                 });
             });
@@ -379,31 +378,87 @@
         });
     };
 
-    // stickyTabs
+    // stickyTabs — rAF-throttled; avoids layout thrash on every scroll tick
     var stickyTabs = function () {
-        let sectionIds = $('a.scroll-to');
-        $(document).scroll(function () {
-            let viewportTrigger = $(document).scrollTop() + ($(window).height() * 0.4);
-            sectionIds.each(function () {
-                let container = $(this).attr('href');
-                if (!container || container.charAt(0) !== '#') {
+        var $sectionIds = $("a.scroll-to");
+        if (!$sectionIds.length) {
+            return;
+        }
+
+        var ticking = false;
+
+        function updateActive() {
+            ticking = false;
+            var viewportTrigger =
+                window.pageYOffset + window.innerHeight * 0.4;
+            $sectionIds.each(function () {
+                var $link = $(this);
+                var href = $link.attr("href");
+                if (!href || href.charAt(0) !== "#") {
                     return;
                 }
-                let $container = $(container);
-                if (!$container.length) {
+                var target = document.querySelector(href);
+                if (!target) {
                     return;
                 }
-                let containerOffset = $container.offset().top;
-                let containerHeight = $container.outerHeight();
-                let containerBottom = containerOffset + containerHeight;
-                if (viewportTrigger < containerBottom - 20 && viewportTrigger >= containerOffset - 20) {
-                $(this).addClass('active');
-                } else {
-                $(this).removeClass('active');
-                }
+                var rect = target.getBoundingClientRect();
+                var top = rect.top + window.pageYOffset;
+                var bottom = top + rect.height;
+                var active =
+                    viewportTrigger < bottom - 20 &&
+                    viewportTrigger >= top - 20;
+                $link.toggleClass("active", active);
             });
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(updateActive);
+            }
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        $(window).on("resize", updateActive);
+        updateActive();
+    };
+
+    /** Lightweight reveal (replaces WOW.js scroll polling) */
+    var initIoReveal = function () {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+            document.querySelectorAll(".io-reveal").forEach(function (el) {
+                el.classList.add("io-visible");
+            });
+            return;
+        }
+        if (!("IntersectionObserver" in window)) {
+            $(".io-reveal").addClass("io-visible");
+            return;
+        }
+        var io = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    var el = entry.target;
+                    var d = el.getAttribute("data-reveal-delay");
+                    if (d) {
+                        el.style.transitionDelay = d;
+                    }
+                    el.classList.add("io-visible");
+                    io.unobserve(el);
+                });
+            },
+            { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.06 }
+        );
+        document.querySelectorAll(".io-reveal").forEach(function (el) {
+            io.observe(el);
         });
-    }
+    };
 
     // Custom arrow cursor + SVG motion (desktop only; skips reduced-motion users)
     var initCustomCursor = function () {
@@ -535,16 +590,28 @@
         var seen = new Set();
         var onMove = function (e) {
             var el = e.currentTarget;
-            var rect = el.getBoundingClientRect();
-            var w = Math.max(rect.width, 1);
-            var h = Math.max(rect.height, 1);
-            var x = ((e.clientX - rect.left) / w) * 100;
-            var y = ((e.clientY - rect.top) / h) * 100;
-            el.style.setProperty("--spot-x", x.toFixed(2) + "%");
-            el.style.setProperty("--spot-y", y.toFixed(2) + "%");
+            if (el._spotlightRaf) {
+                return;
+            }
+            var cx = e.clientX;
+            var cy = e.clientY;
+            el._spotlightRaf = window.requestAnimationFrame(function () {
+                el._spotlightRaf = null;
+                var rect = el.getBoundingClientRect();
+                var w = Math.max(rect.width, 1);
+                var h = Math.max(rect.height, 1);
+                var x = ((cx - rect.left) / w) * 100;
+                var y = ((cy - rect.top) / h) * 100;
+                el.style.setProperty("--spot-x", x.toFixed(2) + "%");
+                el.style.setProperty("--spot-y", y.toFixed(2) + "%");
+            });
         };
         var onLeave = function (e) {
             var el = e.currentTarget;
+            if (el._spotlightRaf) {
+                window.cancelAnimationFrame(el._spotlightRaf);
+                el._spotlightRaf = null;
+            }
             el.style.removeProperty("--spot-x");
             el.style.removeProperty("--spot-y");
         };
@@ -604,6 +671,7 @@
         canvas();
         infiniteSlide();
         stickyTabs();
+        initIoReveal();
         initCustomCursor();
         initCardSpotlight();
     });
