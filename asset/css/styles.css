@@ -2605,6 +2605,65 @@ header .mobile-menu {
   scrollbar-width: thin;
   scrollbar-color: var(--primary) rgba(255, 255, 255, 0.06);
 }
+
+/* Animated brand gradient — clipped inside card (spotlight uses parent ::before/::after) */
+.left-sidebar > .left-sidebar__ambient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  /* Below sidebar content (z-index 2 via .spotlight-card > *), above base fill */
+  z-index: 1;
+  contain: paint;
+}
+.left-sidebar > .left-sidebar__ambient::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180%;
+  height: 180%;
+  margin: -90% 0 0 -90%;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(0, 95, 234, 0.5) 0deg,
+    rgba(40, 120, 255, 0.22) 55deg,
+    rgba(0, 40, 120, 0.4) 120deg,
+    rgba(90, 160, 255, 0.28) 200deg,
+    rgba(0, 70, 200, 0.45) 280deg,
+    rgba(0, 95, 234, 0.5) 360deg
+  );
+  filter: blur(48px);
+  -webkit-filter: blur(48px);
+  animation: left-sidebar-ambient-rotate 16s linear infinite;
+}
+.left-sidebar > .left-sidebar__ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    165deg,
+    rgba(8, 10, 16, 0.55) 0%,
+    rgba(8, 10, 16, 0.2) 40%,
+    rgba(8, 10, 16, 0.65) 100%
+  );
+  pointer-events: none;
+}
+@keyframes left-sidebar-ambient-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .left-sidebar > .left-sidebar__ambient::before {
+    animation: none;
+  }
+}
+
 .left-sidebar::-webkit-scrollbar {
   width: 8px;
 }
