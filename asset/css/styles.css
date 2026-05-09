@@ -4423,11 +4423,6 @@ header .mobile-menu {
   isolation: isolate;
   overflow: hidden;
 }
-/* Left sidebar scrolls — keep vertical scroll; still clip glow horizontally */
-.left-sidebar.spotlight-card {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
 .spotlight-card::before {
   content: "";
   position: absolute;
@@ -4467,6 +4462,12 @@ header .mobile-menu {
 .spotlight-card > * {
   position: relative;
   z-index: 2;
+}
+
+/* Full sidebar spotlight: keep vertical scroll (spotlight-card sets overflow: hidden) */
+.left-sidebar.spotlight-card {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
