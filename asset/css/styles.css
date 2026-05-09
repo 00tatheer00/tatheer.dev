@@ -2590,16 +2590,17 @@ header .mobile-menu {
   top: -10%;
   transform-origin: 50% 50%;
   will-change: transform;
-  /* Single brand colour — soft radial, blurred so it reads as a fade, not a hard gradient */
+  /* Stronger brand-blue wash — still soft, but clearly visible when travelling */
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(0, 95, 234, 0.42) 0%,
-    rgba(0, 95, 234, 0.14) 38%,
-    rgba(0, 95, 234, 0) 68%
+    rgba(0, 95, 234, 0.78) 0%,
+    rgba(0, 95, 234, 0.38) 34%,
+    rgba(0, 95, 234, 0.12) 58%,
+    rgba(0, 95, 234, 0) 76%
   );
-  filter: blur(42px);
-  -webkit-filter: blur(42px);
-  opacity: 0.95;
+  filter: blur(28px);
+  -webkit-filter: blur(28px);
+  opacity: 1;
   animation: left-sidebar-blue-travel 18s ease-in-out infinite;
 }
 .left-sidebar > .left-sidebar__ambient::after {
@@ -2607,12 +2608,12 @@ header .mobile-menu {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  /* Softer in the middle so the travelling blue shows; darker at edges for contrast */
+  /* Lighter veil so the blue stays prominent; edges still anchored for readability */
   background: linear-gradient(
     168deg,
-    rgba(9, 10, 13, 0.88) 0%,
-    rgba(9, 10, 13, 0.36) 45%,
-    rgba(9, 10, 13, 0.86) 100%
+    rgba(9, 10, 13, 0.62) 0%,
+    rgba(9, 10, 13, 0.12) 48%,
+    rgba(9, 10, 13, 0.68) 100%
   );
   pointer-events: none;
 }
