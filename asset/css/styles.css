@@ -4464,6 +4464,7 @@ header .mobile-menu {
   z-index: 2;
 }
 .left-sidebar.spotlight-card {
+  position: fixed;
   overflow-x: hidden;
   overflow-y: auto;
 }
