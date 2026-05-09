@@ -569,6 +569,7 @@
             return;
         }
         var selector = [
+            ".left-sidebar .profile-hero",
             ".experiences-wrap .item",
             ".section-hero .indicators .indicators-item",
             ".section-hero .indicators .more-infor",
