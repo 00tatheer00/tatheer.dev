@@ -2632,8 +2632,6 @@ header .mobile-menu {
   padding: 12px;
   box-sizing: border-box;
   border-radius: 22px;
-  perspective: 880px;
-  perspective-origin: 50% 42%;
 }
 .left-sidebar .profile-hero .avatar.avatar-wrap {
   background: none;
@@ -2641,17 +2639,12 @@ header .mobile-menu {
   border: none;
   outline: none;
   border-radius: 18px;
-  overflow: visible;
+  overflow: hidden;
   margin-bottom: 0;
   width: 100%;
   aspect-ratio: 1;
   max-width: none;
-  transform-style: preserve-3d;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.55s ease;
-}
-.left-sidebar .profile-hero:hover .avatar.avatar-wrap {
-  transform: rotateX(5.5deg) rotateY(-8deg) translateZ(16px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 .left-sidebar .profile-hero .avatar.avatar-wrap img {
   width: 100%;
@@ -2659,25 +2652,7 @@ header .mobile-menu {
   object-fit: cover;
   display: block;
   border-radius: 18px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.52),
-    0 10px 24px rgba(0, 95, 234, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -18px 36px rgba(0, 0, 0, 0.18);
-}
-.left-sidebar .profile-hero:hover .avatar.avatar-wrap img {
-  box-shadow: 0 30px 58px rgba(0, 0, 0, 0.58),
-    0 14px 32px rgba(0, 95, 234, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-}
-@media (prefers-reduced-motion: reduce) {
-  .left-sidebar .profile-hero:hover .avatar.avatar-wrap {
-    transform: none;
-  }
-  .left-sidebar .profile-hero .avatar.avatar-wrap {
-    transition-duration: 0.01ms;
-  }
+  box-shadow: none;
 }
 .left-sidebar .profile-meta {
   margin-top: auto;
