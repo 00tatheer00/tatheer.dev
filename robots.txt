@@ -1,5 +1,9 @@
+# tatheer.dev — refresh sitemap lastmod when you add pages or materially update home SEO/content.
+# Single-page site: crawlers index "/" and discover section anchors from links on the page.
+
 User-agent: *
 Allow: /
+
 Host: https://tatheer.dev
 
 Sitemap: https://tatheer.dev/sitemap.xml

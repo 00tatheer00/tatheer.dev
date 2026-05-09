@@ -1,0 +1,15 @@
+/* TEAM */
+Developer & owner: S Tatheer Hussain
+Site: https://tatheer.dev/
+Contact: tatheerabidi00@gmail.com
+Location: Peshawar, Pakistan
+
+/* ROLE */
+Full stack software engineer — SaaS, web & mobile development (primary).
+Technical trainer & instructor — institutes, cohorts, remote teams.
+
+/* STACK */
+PHP, JavaScript, TypeScript, React, Next.js, Node.js, APIs, cloud deployment.
+
+/* THANKS */
+Fonts: Google Fonts (Great Vibes). Icons & tooling as credited in site assets.
