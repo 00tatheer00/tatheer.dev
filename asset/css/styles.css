@@ -2779,7 +2779,7 @@ header .mobile-menu {
 }
 .left-sidebar .bot-button:hover .icon {
   color: #111111;
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 .left-sidebar .bot-button:hover .text {
   color: #fff;
