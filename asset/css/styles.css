@@ -1144,22 +1144,24 @@ form .flat-alert {
 }
 .form-contact fieldset label {
   font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  margin-bottom: 5px;
+  font-size: 17px;
+  line-height: 22px;
+  margin-bottom: 4px;
   letter-spacing: 0;
 }
 .form-contact .fiel-mail {
-  margin-bottom: 37px;
+  margin-bottom: 20px;
 }
 .form-contact .fiel-phone {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .form-contact .fiel-text {
-  margin-bottom: 31px;
+  margin-bottom: 16px;
 }
 .form-contact .fiel-text textarea {
-  height: 105px;
+  height: 76px;
+  min-height: 76px;
+  resize: vertical;
 }
 .form-contact .pricing-list {
   display: flex;
@@ -4197,13 +4199,13 @@ header .mobile-menu {
   backdrop-filter: blur(32px) saturate(1.45);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
-  padding: 48px 53px 52px 53px;
+  padding: 28px 36px 32px 36px;
   background-color: rgba(18, 17, 22, 0.55);
 }
 .section-contact-inner .heading {
-  margin-bottom: 61px;
-  font-size: 80px;
-  line-height: 80px;
+  margin-bottom: 26px;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
   letter-spacing: -0.8px;
 }
 .section-contact-inner.type-lg {
@@ -5120,11 +5122,11 @@ body.site-cursor-on.site-cursor-pointer .site-cursor-svg {
   }
   .section-contact-inner.type-lg,
   .section-contact-inner {
-    padding: 28px 20px 40px 20px;
+    padding: 22px 18px 28px 18px;
   }
   .section-contact-inner.type-lg .heading,
   .section-contact-inner .heading {
-    margin-bottom: 40px;
+    margin-bottom: 22px;
   }
   .section-contact-inner.type-lg .bot-btn,
   .section-contact-inner .bot-btn {
