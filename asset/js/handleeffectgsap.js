@@ -68,13 +68,10 @@ if (typeof ScrollTrigger !== "undefined") {
             const hasClass = (className) => $el.hasClass(className);
 
             if (hasClass("effect-fade")) settings.opacity = 0;
-            if (hasClass("effect-right")) {
+            /* Horizontal slides removed — fade only */
+            if (hasClass("effect-right") || hasClass("effect-left")) {
                 settings.opacity = 0;
-                settings.x = "50";
-            }
-            if (hasClass("effect-left")) {
-                settings.opacity = 0;
-                settings.x = "-50";
+                settings.duration = 0.65;
             }
             if (hasClass("effect-up")) {
                 settings.opacity = 0;
@@ -156,18 +153,12 @@ if (typeof ScrollTrigger !== "undefined") {
     var scrolling_effect = function () {
         if ($(".scrolling-effect").length === 0) return;
         $(".scrolling-effect").each(function (index, el) {
-            var tween = {
+            gsap.from(el, {
                 opacity: 0,
-                duration: 0.72,
-                ease: "power3.out",
+                duration: 0.55,
+                ease: "power2.out",
                 scrollTrigger: Object.assign({}, stOnce, { trigger: el }),
-            };
-            if ($(el).hasClass("effectRight")) tween.x = 80;
-            if ($(el).hasClass("effectLeft")) tween.x = -80;
-            if ($(el).hasClass("effectBottom")) tween.y = 100;
-            if ($(el).hasClass("effectTop")) tween.y = -80;
-            if ($(el).hasClass("effectZoomIn")) tween.scale = 0.5;
-            gsap.from(el, tween);
+            });
         });
     };
 
@@ -215,8 +206,7 @@ if (typeof ScrollTrigger !== "undefined") {
         bannerStripes.forEach((element) => {
             gsap.from(element, {
                 opacity: 0,
-                x: -32,
-                duration: 0.85,
+                duration: 0.6,
                 ease: "power2.out",
                 scrollTrigger: Object.assign({}, stOnce, { trigger: element }),
             });
