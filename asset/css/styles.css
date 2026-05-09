@@ -4476,6 +4476,42 @@ header .mobile-menu {
   }
 }
 
+/*------------ Fixed WhatsApp (bottom right) ---------- */
+.whatsapp-float {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right, 0px));
+  bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  background: #25d366;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55), 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+.whatsapp-float:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.whatsapp-float__icon {
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float {
+    transition: none;
+  }
+}
+
 /*------------ Custom site cursor — SVG arrow + animated inner fill ---------- */
 body.site-cursor-on {
   cursor: none;
