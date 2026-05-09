@@ -2558,15 +2558,6 @@ header .mobile-menu {
 .left-sidebar::-webkit-scrollbar-thumb:hover {
   background-color: color-mix(in srgb, var(--primary) 88%, #ffffff);
 }
-.sidebar-profile-card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
-  position: relative;
-  border-radius: 18px;
-}
 .left-sidebar .heading {
   display: flex;
   align-items: center;
@@ -4432,6 +4423,11 @@ header .mobile-menu {
   isolation: isolate;
   overflow: hidden;
 }
+/* Left sidebar scrolls — keep vertical scroll; still clip glow horizontally */
+.left-sidebar.spotlight-card {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .spotlight-card::before {
   content: "";
   position: absolute;
@@ -4467,16 +4463,6 @@ header .mobile-menu {
 }
 .spotlight-card:hover::after {
   opacity: 1;
-}
-/* Wider glow on full sidebar profile card (tall area) */
-.sidebar-profile-card.spotlight-card::after {
-  background: radial-gradient(
-    circle min(320px, 75vmin) at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in srgb, var(--primary) 48%, transparent) 0%,
-    color-mix(in srgb, var(--primary) 26%, transparent) 30%,
-    color-mix(in srgb, var(--primary) 9%, transparent) 54%,
-    transparent 76%
-  );
 }
 .spotlight-card > * {
   position: relative;
