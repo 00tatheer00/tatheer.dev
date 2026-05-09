@@ -2552,13 +2552,36 @@ header .mobile-menu {
   width: 100%;
   position: fixed;
   border-radius: 24px;
-  background-color: rgba(18, 17, 22, 0.52);
-  -webkit-backdrop-filter: blur(32px) saturate(1.45);
-  backdrop-filter: blur(32px) saturate(1.45);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  isolation: isolate;
+  background-color: rgba(10, 12, 20, 0.42);
+  background-image: linear-gradient(
+      175deg,
+      rgba(8, 10, 18, 0.94) 0%,
+      rgba(12, 16, 28, 0.82) 42%,
+      rgba(8, 10, 18, 0.92) 100%
+    ),
+    radial-gradient(
+      ellipse 110% 75% at 12% 8%,
+      rgba(0, 95, 234, 0.32) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 85% 60% at 92% 38%,
+      rgba(0, 55, 140, 0.26) 0%,
+      transparent 52%
+    ),
+    url("../images/section/works-1.jpg");
+  background-size: auto, auto, auto, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat;
+  -webkit-backdrop-filter: blur(44px) saturate(1.75);
+  backdrop-filter: blur(44px) saturate(1.75);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 52px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(0, 95, 234, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
   padding: 32px 26px 28px;
-  background-color: rgba(14, 14, 18, 0.82);
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -2593,16 +2616,21 @@ header .mobile-menu {
   flex-shrink: 0;
 }
 .left-sidebar .heading > img {
-  max-height: 32px;
+  max-height: 34px;
   width: auto;
-  opacity: 0.95;
+  opacity: 1;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 24px rgba(0, 95, 234, 0.18));
 }
 .left-sidebar .box-status {
   padding: 6px 16px 6px 14px;
   gap: 10px;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  backdrop-filter: blur(12px) saturate(1.2);
+  border-radius: 999px;
 }
 .left-sidebar .box-status .dot {
   width: 8px;
