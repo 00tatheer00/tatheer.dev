@@ -2064,22 +2064,29 @@ header .mobile-menu {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.1019607843);
   box-shadow: 0px 0px 15px 0px rgba(221, 221, 221, 0.1490196078) inset;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   font-size: 18px;
+  transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease,
+    box-shadow 0.22s ease;
 }
 .social-links a:hover {
-  background-color: #fff;
-  color: #151515;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: none;
 }
 .social-links.style-1 a {
   background-color: rgb(17, 17, 17);
 }
 .social-links.style-1 a:hover {
-  background-color: #fff;
-  color: #151515;
+  background-color: rgb(17, 17, 17);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: none;
 }
 
 .box-status {
@@ -2712,6 +2719,12 @@ header .mobile-menu {
   font-size: 17px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+.left-sidebar .social-links a:hover {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
   box-shadow: none;
 }
 .left-sidebar .bot-button {
