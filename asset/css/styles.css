@@ -4651,39 +4651,45 @@ header .mobile-menu {
   }
 }
 
-/*------------ Custom site cursor — SVG arrow + animated inner fill ---------- */
-body.site-cursor-on {
-  cursor: none;
+/*------------ Dot cursor (CSS only — no JS / rAF) --------------------------- */
+:root {
+  --site-cursor-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23ffffff' fill-opacity='0.95'/%3E%3Ccircle cx='6' cy='6' r='5' fill='none' stroke='%23005fea' stroke-width='1.5'/%3E%3C/svg%3E")
+      6 6,
+    auto;
 }
-/* Accordion / services use div[role=button] — must override global `a{cursor:pointer}` & Bootstrap */
-body.site-cursor-on,
-body.site-cursor-on * {
-  cursor: none !important;
+
+@media (pointer: fine) and (min-width: 992px) {
+  html,
+  body,
+  a,
+  button,
+  [role="button"],
+  label,
+  .tf-btn-menu,
+  .close-canvas,
+  .scroll-to,
+  .overlay,
+  input[type="submit"],
+  input[type="button"],
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"],
+  input[type="file"],
+  select {
+    cursor: var(--site-cursor-dot);
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]),
+  textarea,
+  [contenteditable="true"] {
+    cursor: text !important;
+  }
 }
-.site-cursor {
-  pointer-events: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 2147483647;
-  transform: translate3d(-100px, -100px, 0);
-  will-change: transform;
-  backface-visibility: hidden;
-  /* Single, cheap shadow — animating filter on the moving layer caused jank */
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
-}
-.site-cursor-svg {
-  display: block;
-  transform-origin: 0 0;
-  /* Only the hover scale eases; position tracks at full speed via JS + rAF */
-  transition: transform 0.12s ease-out;
-}
-body.site-cursor-on.site-cursor-pointer .site-cursor {
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--primary) 45%, transparent))
-    drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45));
-}
-body.site-cursor-on.site-cursor-pointer .site-cursor-svg {
-  transform: scale(1.1);
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --site-cursor-dot: auto;
+  }
 }
 
 /*-------------- Responsive ----------------- */
