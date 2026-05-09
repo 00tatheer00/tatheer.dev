@@ -2601,7 +2601,7 @@ header .mobile-menu {
   filter: blur(28px);
   -webkit-filter: blur(28px);
   opacity: 1;
-  animation: left-sidebar-blue-travel 18s ease-in-out infinite;
+  animation: left-sidebar-blue-travel 11s ease-in-out infinite;
 }
 .left-sidebar > .left-sidebar__ambient::after {
   content: "";
