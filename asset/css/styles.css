@@ -2551,49 +2551,49 @@ header .mobile-menu {
   max-width: 380px;
   width: 100%;
   position: fixed;
-  border-radius: 24px;
+  border-radius: 26px;
   isolation: isolate;
-  /* Premium gradient panel (brand navy + primary blue) — light frost only */
-  background-color: #0b0e18;
+  /* Premium card: gradient border + layered face (opaque — no glass blur) */
+  border: 1px solid transparent;
+  background-color: #0a0d14;
   background-image: linear-gradient(
-      175deg,
-      rgba(255, 255, 255, 0.14) 0%,
-      rgba(255, 255, 255, 0.03) 22%,
-      transparent 46%
+      185deg,
+      rgba(255, 255, 255, 0.11) 0%,
+      rgba(255, 255, 255, 0.03) 18%,
+      transparent 42%
     ),
     radial-gradient(
-      ellipse 95% 85% at 88% 8%,
-      rgba(0, 95, 234, 0.55) 0%,
-      rgba(0, 55, 140, 0.18) 42%,
-      transparent 58%
+      120% 80% at 100% 0%,
+      rgba(0, 95, 234, 0.18) 0%,
+      transparent 55%
     ),
     radial-gradient(
-      ellipse 85% 75% at 8% 92%,
-      rgba(0, 70, 180, 0.42) 0%,
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 70% 55% at 50% 115%,
-      rgba(0, 95, 234, 0.22) 0%,
-      transparent 48%
+      90% 70% at 0% 100%,
+      rgba(0, 60, 150, 0.16) 0%,
+      transparent 50%
     ),
     linear-gradient(
       158deg,
-      #1c2238 0%,
-      #141a2e 26%,
-      #0e1324 52%,
-      #080b14 100%
+      #171f34 0%,
+      #111725 28%,
+      #0b0f1a 56%,
+      #06080f 100%
+    ),
+    linear-gradient(
+      132deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(0, 95, 234, 0.55) 42%,
+      rgba(255, 255, 255, 0.18) 78%,
+      rgba(10, 14, 24, 0.95) 100%
     );
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto;
-  -webkit-backdrop-filter: blur(14px) saturate(1.35);
-  backdrop-filter: blur(14px) saturate(1.35);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.58),
-    0 0 0 1px rgba(0, 95, 234, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -12px 40px rgba(0, 30, 90, 0.22);
+  background-origin: padding-box, padding-box, padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, padding-box, padding-box, border-box;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+    0 36px 72px -20px rgba(0, 0, 0, 0.72),
+    0 14px 28px -12px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 95, 234, 0.12),
+    0 0 48px -12px rgba(0, 95, 234, 0.14);
   padding: 32px 26px 28px;
   z-index: 20;
   display: flex;
@@ -2639,10 +2639,14 @@ header .mobile-menu {
   padding: 6px 16px 6px 14px;
   gap: 10px;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background-color: rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
   border-radius: 999px;
 }
 .left-sidebar .box-status .dot {
@@ -2685,7 +2689,9 @@ header .mobile-menu {
   width: 100%;
   aspect-ratio: 1;
   max-width: none;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    0 0 32px -8px rgba(0, 95, 234, 0.2);
 }
 .left-sidebar .profile-hero .avatar.avatar-wrap img {
   width: 100%;
