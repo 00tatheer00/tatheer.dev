@@ -1,0 +1,29 @@
+{
+  "name": "S Tatheer Hussain — Full Stack & SaaS Developer",
+  "short_name": "Tatheer",
+  "description": "Software engineer and full stack developer in Pakistan: SaaS, web & mobile apps. Technical trainer and instructor. tatheer.dev",
+  "id": "https://tatheer.dev/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0c12",
+  "theme_color": "#005fea",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "developer tools", "education"],
+  "icons": [
+    {
+      "src": "/asset/images/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/asset/images/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

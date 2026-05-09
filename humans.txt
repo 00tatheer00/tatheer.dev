@@ -13,3 +13,8 @@ PHP, JavaScript, TypeScript, React, Next.js, Node.js, APIs, cloud deployment.
 
 /* THANKS */
 Fonts: Google Fonts (Great Vibes). Icons & tooling as credited in site assets.
+
+/* SITE */
+Manifest: /manifest.json
+Security contact: /.well-known/security.txt
+Sitemap: /sitemap.xml
