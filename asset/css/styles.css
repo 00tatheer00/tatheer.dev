@@ -4463,8 +4463,6 @@ header .mobile-menu {
   position: relative;
   z-index: 2;
 }
-
-/* Full sidebar spotlight: keep vertical scroll (spotlight-card sets overflow: hidden) */
 .left-sidebar.spotlight-card {
   overflow-x: hidden;
   overflow-y: auto;
