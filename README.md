@@ -66,3 +66,11 @@ After publishing changes, verify:
 ## License
 
 No license file was identified during this review. Confirm the intended license before redistribution.
+
+---
+
+## Repository standards
+
+- [Contribution guidelines](./CONTRIBUTING.md)
+- [Security policy](./SECURITY.md)
+- [Pull request template](./.github/PULL_REQUEST_TEMPLATE.md)
