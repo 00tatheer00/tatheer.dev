@@ -1,74 +1,68 @@
-# S Tatheer Hussain Portfolio
+# Tatheer Hussain — Software Engineer Portfolio
 
-Personal portfolio website for S Tatheer Hussain (Software Developer and Technical Trainer), built as a static-first site with HTML, CSS, JS, and optional PHP form handlers.
+Personal portfolio website for **S. Tatheer Hussain**, Software Engineer and Full-Stack Developer.
 
-## Run Locally
+This repository contains the static-first portfolio website built with HTML, CSS, and JavaScript, with optional PHP contact form handlers.
 
-- Open `index.html` directly in a browser, or
-- Serve with a local server:
-  - `python -m http.server 4173`
-  - then visit `http://127.0.0.1:4173`
+## Run locally
 
-## Tech Stack
+Open `index.html` in a browser, or start a local server:
 
-- Markup: `index.html`
-- Styling: `asset/css/styles.css` (CSS-only workflow)
-- Scripts: `asset/js/main.js` + vendor scripts
-- Optional backend handlers:
-  - `asset/contact/contact-process.php`
-  - `asset/mail/subscribe.php`
-  - `asset/mail/subscribe-mailchimp.php`
+```bash
+python -m http.server 4173
+```
 
-## SEO Implementation (Professional Baseline)
+Visit [http://127.0.0.1:4173](http://127.0.0.1:4173).
 
-This project includes high-level on-page and technical SEO foundations:
+## Technology
 
-- Canonical URL and hreflang (`en`, `x-default`)
-- Advanced robots directives for major crawlers
-- Open Graph and Twitter card metadata for rich social previews
-- Semantic structured data (`@graph`) with:
-  - `Person`
-  - `WebSite`
-  - `WebPage`
-  - `ProfessionalService`
-  - `FAQPage`
-- Crawl controls:
-  - `robots.txt`
-  - `sitemap.xml` with `<lastmod>`
-- Better above-the-fold rendering signal:
-  - hero image preload + eager loading priority
+- HTML for semantic page structure
+- CSS for responsive layouts and visual styling
+- JavaScript for interactive behavior
+- Optional PHP handlers for contact and mailing-list forms
 
-## SEO Validation Workflow
+## SEO foundations
 
-After each production deploy, validate:
+The project includes:
 
-1. **Indexing / coverage**
-   - Google Search Console
-   - Bing Webmaster Tools
-2. **Structured data**
-   - Google Rich Results Test
-   - Schema.org Validator
-3. **Performance + Core Web Vitals**
-   - PageSpeed Insights (mobile + desktop)
-   - Lighthouse
+- Canonical URL and language metadata
+- Open Graph and Twitter card metadata
+- Structured data using Schema.org vocabulary
+- `robots.txt` and `sitemap.xml`
+- Hero image preload and loading priority
 
-## External SEO Tasks (Required)
+## Post-deployment checks
 
-Complete these outside the codebase for best ranking performance:
+After publishing changes, verify:
 
-- Verify ownership in Google Search Console and Bing Webmaster Tools
-- Submit sitemap: `https://tatheer.dev/sitemap.xml`
-- Configure analytics:
-  - Google Analytics 4
-  - Google Tag Manager
-  - Microsoft Clarity (recommended)
-- Ensure hosting-level SEO hygiene:
-  - HTTPS redirect + canonical host redirect
-  - Brotli/Gzip compression
-  - browser caching for static assets
-  - HTTP/2 or HTTP/3 enabled
+1. Canonical URL, redirects, and HTTPS.
+2. Sitemap and robots accessibility.
+3. Structured data using Google's Rich Results Test and Schema.org Validator.
+4. Mobile and desktop performance using Lighthouse and PageSpeed Insights.
+5. Contact form delivery and spam protection.
 
-## Notes
+## Repository layout
 
-- Legacy SCSS source is archived at `backup/scss-backup-2026-05-04`.
-- Active styling source of truth is `asset/css/styles.css`.
+- `index.html`: primary portfolio page
+- `asset/css/styles.css`: active stylesheet
+- `asset/js/`: site behavior and scripts
+- `asset/images/`: images and visual assets
+- `asset/contact/`: optional PHP contact handler
+- `robots.txt` and `sitemap.xml`: crawl configuration
+
+## Security and maintenance
+
+- Keep secrets and private configuration out of source control.
+- Review server-side form handlers before deployment.
+- Do not commit generated logs, operating-system metadata, or local editor files.
+- Keep external libraries and dependencies reviewed and up to date.
+
+## Links
+
+- [Live portfolio](https://tatheer.dev)
+- [GitHub profile](https://github.com/00tatheer00)
+- [LinkedIn](https://www.linkedin.com/in/tatheer-hussain)
+
+## License
+
+No license file was identified during this review. Confirm the intended license before redistribution.
